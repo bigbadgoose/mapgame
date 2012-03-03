@@ -30,7 +30,7 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 120 == 0) {
+        if (Crafty.frame() % 160 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
             x: this.x,

@@ -1,0 +1,21 @@
+// Constants
+
+const WIDTH = <%= GamesController::ARENA_WIDTH %>;
+const HEIGHT = <%= GamesController::ARENA_HEIGHT %>;
+const SPRITES = [
+  "/images/sprites/player.gif"
+];
+
+
+// Globals
+var Game = {
+  entities: { 
+    player: false
+  },
+  helpers: {
+    loadScene: false
+  },
+  pubsub: false
+};
+window.Game = Game;
+

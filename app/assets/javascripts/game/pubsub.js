@@ -9,7 +9,7 @@ $(function() {
   WEB_SOCKET_DEBUG = true;
 
   var pusher = new Pusher('657713b267a64758afbf');
-  var channel = pusher.subscribe('mapgame_global');
+  var channel = pusher.subscribe('presence-mapgame_global');
   channel.bind('client-player_move', function(data) {
     console.log("Got player move! - " + data.x + ":" + data.y);
   });
