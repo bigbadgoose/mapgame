@@ -1,7 +1,7 @@
 <div>
   <h2>MapGame</h2>
 </div>
-<div id='mapDiv'><div>
+<div id='mapDiv' style="display:none"><div>
 
 <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 <script>
@@ -27,5 +27,12 @@
   var channel = pusher.subscribe('mapgame_global');
   channel.bind('my_event', function(data) {
     alert(data);
+  });
+</script>
+<script type="text/javascript">
+  $(function() {
+    setTimeout(function() {
+      Game.helpers.loadScene("game");
+    }, 500);
   });
 </script>
