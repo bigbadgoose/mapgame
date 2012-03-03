@@ -1,1 +1,3 @@
-test = 'hi'
+game =
+  channel: '1'
+
