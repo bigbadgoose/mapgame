@@ -1,20 +1,25 @@
 <div>
   <h2>MapGame</h2>
 </div>
-<div id='mapDiv'><div>
+<div id="map_div"></div>
 
-<script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
 <script>
-  function GetMap() {
-    var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
-      credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc"
+
+  function getMap() {
+    var map = new Microsoft.Maps.Map(document.getElementById("map_div"), {
+      credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
+      center: new Microsoft.Maps.Location(37.794254, -122.419453),
+      disableBirdseye: true,
+      zoom: 20
     });
   }
+
   $(function() {
-    // GetMap();
-  });
-</script>
-<script type="text/javascript">
+    getMap();
+  })
+
+
   // Enable pusher logging - don't include this in production
   Pusher.log = function(message) {
     if (window.console && window.console.log) window.console.log(message);
@@ -28,4 +33,7 @@
   channel.bind('my_event', function(data) {
     alert(data);
   });
+
 </script>
+
+
