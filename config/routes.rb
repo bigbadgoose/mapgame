@@ -24,6 +24,7 @@ Mapgame::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  resources :games
 
   # Sample resource route with sub-resources:
   #   resources :products do
