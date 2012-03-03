@@ -64,6 +64,7 @@ $(function() {
           case Crafty.keys.A: this.moving.left = true; this.moving.right = false; break;
           case Crafty.keys.W: this.moving.up = true; this.moving.down = false; break;
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
+          case Crafty.keys.P: map.setView({center:new Microsoft.Maps.Location(37.794254, -122.419453)}); break;
         }
       })
       .bind("KeyUp", function(e) {
