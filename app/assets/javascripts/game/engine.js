@@ -1,20 +1,3 @@
-const WIDTH = 600;
-const HEIGHT = 400;
-
-const SPRITES = [
-  "/images/sprites/player.gif"
-];
-
-var Game = {
-  entities: { 
-    player: false
-  },
-  helpers: {
-    loadScene: false
-  }
-};
-window.Game = Game;
-
 $(function() {
   Crafty.init(WIDTH, HEIGHT);
 
@@ -47,6 +30,13 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
+        if (Crafty.frame() % 120 == 0) {
+          window.shit = Game.pubsub;
+          Game.pubsub.trigger("client-player_move", {
+            x: this.x,
+            y: this.y
+          });
+        }
         if (this.moving.left) {
           this.x -= this.xspeed;
         } else if (this.moving.right) {

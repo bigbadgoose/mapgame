@@ -5,11 +5,10 @@
 
 
 <script>
-
   function getMap() {
     var map = new Microsoft.Maps.Map(document.getElementById("map_div"), {
       credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
-      center: new Microsoft.Maps.Location(37.794254, -122.419453),
+      center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
       disableBirdseye: true,
       zoom: 20
     });
@@ -19,24 +18,7 @@
   $(function() {
     getMap();
   })
-
-
-  // Enable pusher logging - don't include this in production
-  Pusher.log = function(message) {
-    if (window.console && window.console.log) window.console.log(message);
-  };
-
-  // Flash fallback logging - don't include this in production
-  WEB_SOCKET_DEBUG = true;
-
-  var pusher = new Pusher('657713b267a64758afbf');
-  var channel = pusher.subscribe('mapgame_global');
-  channel.bind('my_event', function(data) {
-    alert(data);
-  });
-
 </script>
-
 
 <script type="text/javascript">
   $(function() {
