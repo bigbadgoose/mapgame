@@ -1,0 +1,3 @@
+game =
+  channel: '1'
+
