@@ -1,8 +1,19 @@
+<div>
+  <h2>MapGame</h2>
+</div>
+<div id='mapDiv' style="position:absolute; width:100%; height:100%;"></div>
 
-Hello world
-
-
-
+<script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+<script>
+  function GetMap() {
+    var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
+      credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc"
+    });
+  }
+  $(function() {
+    GetMap();
+  });
+</script>
 <script type="text/javascript">
   // Enable pusher logging - don't include this in production
   Pusher.log = function(message) {
