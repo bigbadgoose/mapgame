@@ -252,6 +252,16 @@ $(function() {
           // case Crafty.keys.K: this.firing.down = false; break;
         }
       })
+      .onHit("enemyBullet", function(e) {
+        this.hp -= 25;
+        if (this.hp <= 0) {
+          FX.adviceAnimal('umadd', 'psycho');
+          S.play("fail");
+          this.destroy();
+        } else {
+          S.play("zap06");
+        }
+      });
     Game.player = player;
 
     // End - game scene

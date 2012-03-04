@@ -8,6 +8,7 @@ Crafty.c("playerComponent", {
       x: 30,
       y: 30,
       z: 30,
+      hp: 100
     });
     this.addComponent("Collision")
       .collision()
@@ -15,6 +16,8 @@ Crafty.c("playerComponent", {
         console.log("Got a powerup!");
       })
       .onHit("waypoint", function(e) {
+        S.play("zap01");
+        FX.adviceAnimal('biteoff', 'psycho');
         console.log("Waypoint reached!");
         Game.waypoints.index++;
         var data = {
@@ -24,8 +27,8 @@ Crafty.c("playerComponent", {
         Game.pubsub.trigger("client-waypoint_reached", data);
       })
       .onHit("enemyBullet", function(e) {
-        e[0].obj.destroy();
         console.log("OUCH");
+        e[0].obj.destroy();
       });
   }
 });
@@ -126,6 +129,8 @@ Crafty.c("ghostComponent", {
 // Explosions
 Crafty.c("enemyDestroyingExplosion", {
   init: function() {
+    S.play("zap02");
+    FX.adviceAnimal('pwned', 'psycho');
     this.attr({
       x: 0,
       y: 0,
@@ -167,6 +172,7 @@ Crafty.c("explosion", {
   init: function() {
     this.frame = 0;
     this.bind("EnterFrame", function() {
+      this.frame++;
       if (this.frame > 60) {
         this.destroy();
       }
