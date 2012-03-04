@@ -1,28 +1,31 @@
-<div>
-  <h2>MapGame</h2>
-</div>
+<h2>MapGame</h2>
+
 <div id="map_div"></div>
 
 
 <script>
+  // bing maps
   function getMap() {
-    var map = new Microsoft.Maps.Map(document.getElementById("map_div"), {
+    var mapOpts = {
       credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
       center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
       disableBirdseye: true,
+      showDashboard: false,
       zoom: 20
-    });
+    },
+    map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
     window.map = map;
   }
   $(function() {
     getMap();
-  })
+  });
 </script>
 
 <script type="text/javascript">
   Game.user_id = '<%= session[:user_id] %>';
 
   $(function() {
+    // timer
     setTimeout(function() {
       Game.helpers.loadScene("game");
     }, 500);
