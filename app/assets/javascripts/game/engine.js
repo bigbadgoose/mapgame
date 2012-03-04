@@ -18,12 +18,13 @@ $(function() {
         h: 48
       });
       this.bind("EnterFrame", function() {
-        if (Crafty.frame() % 5 == 0) {
+        if (Crafty.frame() % 10 == 0) {
           var data = Game.otherPlayers[this.player_id];
-          if (data.x && data.y) {
-            this.x = data.x;
-            this.y = data.y;
-            this.z = data.y
+          if (data.lat && data.lng) {
+            var xy = Game.helpers.latLngtoXY([data.lat, data.lng]);
+            this.x = xy[0];
+            this.y = xy[1];
+            this.z = xy[1];
           }
         }
       });
@@ -37,23 +38,26 @@ $(function() {
   Game.helpers.addOtherPlayer = function(player_id) {
     Crafty.e("2D, DOM, playerComponent, playerSprite").attr({ player_id: player_id });
   };
-  Game.helpers.updateOtherPlayer = function(player_id, data) {
-
+  Game.helpers.allPlayerLocations = function() {
+    _.each(_.keys(Game.otherPlayers), function(k) {
+    });
   };
   Game.helpers.getPlayerLatLng = function() {
-    var xOffset = (Game.player.x-16)-480,
-        yOffset = (Game.player.y-24)-300;
+    var xOffset = (Game.player.x+16)-480,
+        yOffset = (Game.player.y+24)-300;
     var mapBounds = map.getBounds();
     var lng = mapBounds.center.longitude+xOffset/480*mapBounds.width/2;
-    var lat = mapBounds.center.latitude+yOffset/300*mapBounds.height/2;
-    window.testLat = lat;
-    window.testLng = lng;
-    M.log("lat:" + lat + " - lng:" + lng);
-    // console.log("lat:" + lat + " - lng:" + lng);
+    var lat = mapBounds.center.latitude-yOffset/300*mapBounds.height/2;
     return {
       lat: lat,
       lng: lng
     }
+  };
+  Game.helpers.latLngtoXY = function(latLng) {
+    var mapBounds = map.getBounds();
+    var x = (latLng[1] - mapBounds.center.longitude)/mapBounds.width*960 + 480;
+    var y = (mapBounds.center.latitude - latLng[0])/mapBounds.height*600 + 300;
+    return [x,y];
   };
   Game.helpers.setMapCenter = function() {
     map.setView({ center: new Microsoft.Maps.Location(testLat,testLng) });
@@ -80,40 +84,30 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 120 == 0) {
-          Game.helpers.getPlayerLatLng();
-        }
-        if (Crafty.frame() % 60 == 0) {
-          var offsetRatioX = (this.x+16-480)/480;
-          var offsetRatioY = -(this.y+24-300)/300;
-          // console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
-        }
         if (Crafty.frame() % 10 == 0) {
           if (this.moving.left || this.moving.right || this.moving.up || this.moving.down) {
-            // console.log("x:" + this.x + " - y: " + this.y);
             var mapBounds = map.getBounds();
             var offsetRatioX = (this.x+16-480)/480;
             var offsetRatioY = -(this.y+24-300)/300;
-            //console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
             var lng = mapBounds.center.longitude;
             var lat = mapBounds.center.latitude;
-            if (this.moving.left && offsetRatioX < -0.15) {
-              lng += offsetRatioX*mapBounds.width/6;
-            } else if (this.moving.right && offsetRatioX > 0.15) {
-              lng += offsetRatioX*mapBounds.width/6;
+            var xOff = 0, yOff = 0;
+            if ((this.moving.left && offsetRatioX < -0.15) || (this.moving.right && offsetRatioX > 0.15)) {
+              xOff = offsetRatioX;
             }
-            if (this.moving.up && offsetRatioY > 0.15) {
-              lat += offsetRatioY*mapBounds.height/6;
-            } else if (this.moving.down && offsetRatioY < -0.15) {
-              lat += offsetRatioY*mapBounds.height/6;
+            if ((this.moving.up && offsetRatioY > 0.15) || (this.moving.down && offsetRatioY < -0.15)) {
+              yOff = offsetRatioY;
             }
+            lng += xOff*mapBounds.width/6;
+            lat += yOff*mapBounds.height/6;
             map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
           }
         }
 
-        // Send location update to server for persistence
-        if (Crafty.frame() % 60 == 0) {
+        if (Crafty.frame() % 10 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
+
+          // Send location update to server for persistence
           $.ajax({
             url: "/positions",
             type: "POST",
@@ -122,19 +116,18 @@ $(function() {
               lng: latLng.lng
             }
           });
-        }
-
-        // Send location updates to all other connected clients
-        if (Crafty.frame() % 5 == 0) {
-          window.shit = Game.pubsub;
+          
+          // Send location updates to all other connected clients
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
-            x: this.x,
-            y: this.y
+            lat: latLng.lat,
+            lng: latLng.lng
           });
         }
-        xOffset = this.x+16-480;
-        yOffset = this.y+24-300;
+
+        // Handle moving within a boundary within field of view
+        var xOffset = this.x+16-480;
+        var yOffset = this.y+24-300;
 
         if (this.moving.left) {
           if (xOffset > -150) {
