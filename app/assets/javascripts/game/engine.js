@@ -79,7 +79,7 @@ $(function() {
           }
           map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
         }
-        if (Crafty.frame() % 5 == 0) {
+        if (Crafty.frame() % 60 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
