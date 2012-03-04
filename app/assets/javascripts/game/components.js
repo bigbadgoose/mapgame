@@ -73,6 +73,9 @@ Crafty.c("ghostComponent", {
 // Misc entities
 Crafty.c("bullet", {
   init: function() {
+    this.attr({
+      frame: 0
+    });
     this.bind("EnterFrame", function() {
       if (this.lat && this.lng) {
         var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
@@ -82,7 +85,7 @@ Crafty.c("bullet", {
         this.lng += this.lngSpeed;
       }
       this.frame++;
-      if (this.frame > 300) {
+      if (this.frame > 120) {
         this.destroy();
       }
     });
