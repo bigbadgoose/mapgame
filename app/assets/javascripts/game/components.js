@@ -142,8 +142,8 @@ Crafty.c("waypoint", {
 Crafty.c("arrow", {
   init: function() {
     this.attr({
-      r: 220,
-      rsq: 220*220,
+      r: 275,
+      rsq: 275*275,
       visible: false
     });
     this.bind("EnterFrame", function() {
@@ -159,6 +159,9 @@ Crafty.c("arrow", {
         this.x = 480 + this.r*Math.cos(angle);
         this.y = 300 - this.r*Math.sin(angle);
         this.rotation = 90 - 180*angle/Math.PI;
+      }
+      if (!waypoint && Crafty.frame() % 60 == 0) {
+        this.visible = false;
       }
     });
   }
