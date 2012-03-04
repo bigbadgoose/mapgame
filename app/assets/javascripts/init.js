@@ -7,6 +7,7 @@ const HEIGHT = 600;
 var Game = {
   user_id: false,
   waypoint: false,
+  waypointIndicator: false,
   player: false,
   otherPlayers: {},
   entities: {

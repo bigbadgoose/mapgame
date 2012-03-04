@@ -68,6 +68,9 @@ $(function() {
   Crafty.scene("game", function() {
     // Begin - game scene
 
+    var waypointIndicator = Crafty.e("2D, DOM, arrow, arrowSprite");
+    Game.waypointIndicator = waypointIndicator;
+
     var player = Crafty
       .e("2D, DOM, playerComponent, playerSprite, Controls, Collision")
       .attr({

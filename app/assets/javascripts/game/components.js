@@ -139,3 +139,27 @@ Crafty.c("waypoint", {
   }
 });
 
+Crafty.c("arrow", {
+  init: function() {
+    this.attr({
+      r: 220,
+      rsq: 220*220,
+      visible: false
+    });
+    this.bind("EnterFrame", function() {
+      var waypoint = Game.waypoints.current;
+      if (waypoint && Crafty.frame() % 5 == 0) {
+        var y_angle = waypoint.y-300+20;
+        var x_angle = waypoint.x-480;
+        this.visible = (y_angle*y_angle+x_angle*x_angle < this.rsq) ? false : true
+        var angle = Math.atan(-y_angle/x_angle);
+        if (x_angle < 0) {
+          angle += Math.PI;
+        }
+        this.x = 480 + this.r*Math.cos(angle);
+        this.y = 300 - this.r*Math.sin(angle);
+        this.rotation = 90 - 180*angle/Math.PI;
+      }
+    });
+  }
+});
