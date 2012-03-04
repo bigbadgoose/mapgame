@@ -20,6 +20,16 @@ h1 {
   position: relative;
 }
 
+#overlay {
+  border: 2px solid red;
+  background: black;
+  opacity: 0.2;
+  width: $game_width;
+  height: $game_height;
+  overflow: hidden;
+  position: absolute !important;
+  z-index: 50;
+}
 #map_div {
   background: #ccc;
   border: 2px solid red;
@@ -32,6 +42,7 @@ h1 {
   border: 2px solid #333;
   position: absolute !important;
   top: 0; left: 0;
+  z-index: 10;
 }
 
 #messages {
