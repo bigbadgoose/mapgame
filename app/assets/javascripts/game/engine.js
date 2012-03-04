@@ -2,14 +2,12 @@ $(function() {
   Crafty.init(WIDTH, HEIGHT);
 
   Crafty.load(SPRITES, function() {
-    console.log("Loading sprites!");
     Crafty.sprite(32, "/images/sprites/player.gif", { playerSprite: [0,0,1,1.5] });
   });
 
   // Player character component
   Crafty.c("playerComponent", {
     init: function() {
-      console.log(" --- PC CREATED!!!! --- ");
       this.origin("center");
       this.attr({
         xspeed: 3,
@@ -20,16 +18,12 @@ $(function() {
         h: 48
       });
       this.bind("EnterFrame", function() {
-        if (Crafty.frame() % 20 == 0) {
+        if (Crafty.frame() % 5 == 0) {
           var data = Game.otherPlayers[this.player_id];
-          console.log("Checking ID: " + this.player_id);
-          console.dir(data);
           if (data.x && data.y) {
-            console.log("Updating positions...");
             this.x = data.x;
             this.y = data.y;
           }
-          console.log(this.player_id + " - " + "x:" + data.x + ", y:" + data.y);
         }
       });
     }
@@ -40,7 +34,6 @@ $(function() {
     Crafty.scene(scene);
   };
   Game.helpers.addOtherPlayer = function(player_id) {
-    console.log("Other Player ID:" + player_id);
     Crafty.e("2D, DOM, playerComponent, playerSprite").attr({ player_id: player_id });
   };
   Game.helpers.updateOtherPlayer = function(player_id, data) {
@@ -69,7 +62,7 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 20 == 0) {
+        if (Crafty.frame() % 5 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
