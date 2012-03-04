@@ -1,26 +1,5 @@
 @import "defs";
 
-
-/* BASE
- *
- * -- water and bones
- * reset      // zero stuff out
- * restyle    // restore styling
- * clearfix   // le fix du clear
- * util       // convenience, marker, and constants
- * layout     // layout tooling classes: stack, bar, slip, boundary
- *
- * -- mirepoix
- * overlay    // overlay (lightbox) and associated, eg. close button
- * forms      // form styling, reduction from bootstrap
- * copy       // body copy for content, eg war and peace
- * sprite     // sprite primitive
- * buttons    // buttons: prime, secondary, cancel, mutators
- * media      // media query, factor out as media support is added
- *
- */
-
-
 /* ---------------------------------------------- RESET */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
@@ -116,17 +95,13 @@ hr {margin: 20px 0;}
 .clear       {clear: both !important;}
 .center      {text-align: center !important;}
 
-.middot-spacer {
+.middot_spacer {
   display: inline-block;
   margin: 0 10px;
 }
 
-.no-select {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+.no_select {
+  @no_select;
 }
 
 
