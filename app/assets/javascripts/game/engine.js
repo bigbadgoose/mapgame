@@ -108,15 +108,17 @@ $(function() {
           var latLng = Game.helpers.getPlayerLatLng();
 
           // Send location update to server for persistence
-          $.ajax({
-            url: "/positions",
-            type: "POST",
-            data: {
-              lat: latLng.lat,
-              lng: latLng.lng
-            }
-          });
-          
+          if (Crafty.frame() % 60 == 0) {
+            $.ajax({
+              url: "/positions",
+              type: "POST",
+              data: {
+                lat: latLng.lat,
+                lng: latLng.lng
+              }
+            });
+          }
+
           // Send location updates to all other connected clients
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
