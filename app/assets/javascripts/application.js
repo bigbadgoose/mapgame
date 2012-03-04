@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require init
+//= require ./lib/underscore
 //= require ./lib/pusher.min
 //= require ./lib/crafty-0.4.6.min
 //= require ./game/pubsub

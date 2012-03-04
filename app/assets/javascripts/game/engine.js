@@ -1,20 +1,3 @@
-const WIDTH = 960;
-const HEIGHT = 600;
-
-const SPRITES = [
-  "/images/sprites/player.gif"
-];
-
-var Game = {
-  entities: {
-    player: false
-  },
-  helpers: {
-    loadScene: false
-  }
-};
-window.Game = Game;
-
 $(function() {
   Crafty.init(WIDTH, HEIGHT);
 
@@ -29,8 +12,7 @@ $(function() {
     console.log("New game start!");
 
     var player = Crafty
-      .e("2D, DOM, player, Controls, Collision")
-      .origin("center")
+      .e("2D, DOM, player, pc, Controls, Collision")
       .attr({
         xspeed: 3,
         yspeed: 3,
@@ -46,7 +28,7 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 160 == 0) {
+        if (Crafty.frame() % 160 == -1) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
@@ -85,6 +67,21 @@ $(function() {
     Game.player = player;
 
     // End - game scene
+  });
+
+  // Player character component
+  Crafty.c("pc", {
+    init: function() {
+      this.origin("center");
+      this.attr({
+        xspeed: 3,
+        yspeed: 3,
+        x: 200,
+        y: 200,
+        w: 32,
+        h: 48
+      })
+    }
   });
 
   Game.helpers.loadScene = function(scene) {
