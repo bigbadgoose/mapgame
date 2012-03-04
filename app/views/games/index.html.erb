@@ -1,9 +1,10 @@
 <header class="boundary">
-
-<h1>MapGame</h1>
+  <h1>MapGame</h1>
 </header>
 
 <div class="boundary" id="game_board">
+  <div class="reticle"></div>
+  <div id="messages">YO</div>
   <div id="map_div"></div>
   <div id="cr-stage"></div>
 </div>
@@ -24,13 +25,13 @@
     map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
     window.map = map;
   }
-  $(function() {
-    getMap();
-  });
 
   Game.user_id = '<%= session[:user_id] %>';
 
   $(function() {
+    // bing
+    getMap();
+
     // timer
     setTimeout(function() {
       Game.helpers.loadScene("game");

@@ -1,8 +1,19 @@
 @import "defs";
 
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 h1 {
   margin: 20px 0;
+}
+
+.reticle {
+  background: url('/images/reticle.png') 0 0 no-repeat;
+  width: 436px;
+  height: 436px;
+  position: absolute;
+  top: 82px;
+  left: 262px;
+  z-index: 2;
 }
 
 #game_board {
@@ -14,9 +25,29 @@ h1 {
   border: 2px solid red;
   width: $game_width;
   height: $game_height;
+  overflow: hidden;
 }
+
 #cr-stage {
   border: 2px solid #333;
   position: absolute !important;
   top: 0; left: 0;
 }
+
+#messages {
+  position: absolute;
+  width: 250px;
+  max-height: 80px;
+  padding: 10px;
+  @include radius;
+  background: rgba(0,0,0,.5);
+  z-index: 2;
+  color: #fff;
+  right: 5px;
+  top: 5px;
+  @include transition;
+  &.on {
+    background: rgba(0,0,0,1);
+  }
+}
+
