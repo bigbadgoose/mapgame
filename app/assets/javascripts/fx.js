@@ -31,6 +31,7 @@
         // add close message
 
         // dismiss
+        var dismissTime = (advice == "umadd") ? 5000 : 2000;
         setTimeout(function() {
           clearInterval(interval);
           map$.removeClass();
@@ -38,7 +39,7 @@
             animal$.remove();
           });
           screenBusy = false;
-        }, 3000);
+        }, dismissTime);
       }
     }
   }();

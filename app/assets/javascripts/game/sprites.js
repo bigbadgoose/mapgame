@@ -28,7 +28,11 @@ const SPRITES = [
 ];
 
 Crafty.load(SPRITES, function() {
-  Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSprite: [0,0,1,1.5] });
+  Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSaucerSprite: [0,0,1,1.5] });
+  Crafty.sprite(64, "/images/sprites/lakitu.gif", { playerLakituSprite: [0,0,1,1.5] });
+  Crafty.sprite(64, "/images/sprites/mushboom.gif", { playerMushboomSprite: [0,0,1,1.5] });
+  Crafty.sprite(64, "/images/sprites/kirby_right.gif", { playerKirbySprite: [0,0,1,1.5] });
+
   Crafty.sprite(64, "/images/sprites/bat_mad.gif", { ghostSprite: [0,0,1,1.5] });
   Crafty.sprite(16, "/images/sprites/fx_explosion.gif", { explosionSprite: [0,0,1,1] });
   Crafty.sprite(32, "/images/sprites/waypoint_flag.gif", { waypointSprite: [0,0,1,2] });
