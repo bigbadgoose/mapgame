@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fx
 //= require messages
 //= require bing
 //= require sound
