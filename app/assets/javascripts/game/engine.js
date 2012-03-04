@@ -104,7 +104,7 @@ $(function() {
           }
         }
 
-        if (Crafty.frame() % 10 == 0) {
+        if (Crafty.frame() % 5 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
 
           // Send location update to server for persistence
