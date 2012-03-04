@@ -255,6 +255,7 @@ $(function() {
       .onHit("enemyBullet", function(e) {
         this.hp -= 2;
         if (this.hp <= 0) {
+          $('#score').html('DEAD');
           FX.adviceAnimal('umadd', 'psycho');
           S.play("fail");
           this.destroy();
