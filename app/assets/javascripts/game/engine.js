@@ -67,6 +67,10 @@ $(function() {
     Game.pubsub.trigger("client-waypoint_reached", {});
     spawnNextWaypoint();
   };
+  Game.helpers.explodeEverything = function() {
+    console.log("Exploding EVERYTHING!!!");
+    Crafty.e("2D, DOM, enemyDestroyingExplosion");
+  };
 
   // Scenes
   Crafty.scene("game", function() {
@@ -217,6 +221,7 @@ $(function() {
           case Crafty.keys.E: FX.adviceAnimal('umadd', 'psycho'); break;
 
           case Crafty.keys.P: B.reset(); break;
+          case Crafty.keys.B: Game.helpers.explodeEverything(); break;
           case Crafty.keys.H: Game.helpers.spawnNextWaypoint(); break;
           case Crafty.keys.G: Game.helpers.spawnGhost(); break;
         }

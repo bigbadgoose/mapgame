@@ -69,7 +69,8 @@ Crafty.c("ghostComponent", {
       lngSpeed: 0.00002,
       w: 32,
       h: 48,
-      frame: 0
+      frame: 0,
+      opacity: 1,
     });
     this.bind("EnterFrame", function() {
       if (this.lat && this.lng) {
@@ -95,7 +96,7 @@ Crafty.c("ghostComponent", {
         }
       }
       this.frame++;
-      if (this.frame > 120) {
+      if (this.frame > 180) {
         this.destroy();
       }
     });
@@ -103,8 +104,39 @@ Crafty.c("ghostComponent", {
       .collision()
       .onHit("playerBullet", function(e) {
         this.destroy();
+        Crafty.e("2D, DOM, explosion, explosionSprite").attr({
+          x: this.x,
+          y: this.y,
+          z: this.y
+        });
         e[0].obj.destroy();
+      })
+      .onHit("enemyDestroyingExplosion", function(e) {
+        this.destroy();
+        Crafty.e("2D, DOM, explosion, explosionSprite").attr({
+          x: this.x,
+          y: this.y,
+          z: this.y
+        });
       });
+  }
+});
+
+
+// Explosions
+Crafty.c("enemyDestroyingExplosion", {
+  init: function() {
+    this.attr({
+      x: 0,
+      y: 0,
+      w: 960,
+      h: 480
+    });
+    this.bind("EnterFrame", function() {
+      if (Crafty.frame() % 60 == 0) {
+        this.destroy();
+      }
+    });
   }
 });
 
@@ -125,6 +157,17 @@ Crafty.c("bullet", {
       }
       this.frame++;
       if (this.frame > 120) {
+        this.destroy();
+      }
+    });
+  }
+});
+
+Crafty.c("explosion", {
+  init: function() {
+    this.frame = 0;
+    this.bind("EnterFrame", function() {
+      if (this.frame > 60) {
         this.destroy();
       }
     });
