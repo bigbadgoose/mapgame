@@ -2,10 +2,6 @@
 
 const WIDTH = 960;
 const HEIGHT = 600;
-const SPRITES = [
-  "/images/sprites/player.gif",
-  "/images/sprites/ghost.gif"
-];
 
 
 // Globals

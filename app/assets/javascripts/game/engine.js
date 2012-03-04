@@ -1,8 +1,13 @@
 $(function() {
   Crafty.init(WIDTH, HEIGHT);
 
+  const SPRITES = [
+    "/images/sprites/player.gif",
+    "/images/sprites/lakitu.gif",
+    "/images/sprites/ghost.gif"
+  ];
   Crafty.load(SPRITES, function() {
-    Crafty.sprite(32, "/images/sprites/player.gif", { playerSprite: [0,0,1,1.5] });
+    Crafty.sprite(32, "/images/sprites/lakitu.gif", { playerSprite: [0,0,1,1.5] });
     Crafty.sprite(32, "/images/sprites/ghost.gif", { ghostSprite: [0,0,1,1.5] });
   });
 
