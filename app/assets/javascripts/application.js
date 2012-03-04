@@ -15,7 +15,7 @@
 //= require init
 //= require ./lib/underscore
 //= require ./lib/pusher.min
-//= require ./lib/crafty-0.4.6.min
+//= require ./lib/crafty-0.4.6
 //= require ./game/pubsub
 //= require ./game/engine
 //= require ./game/components
