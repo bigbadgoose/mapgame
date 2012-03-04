@@ -112,7 +112,6 @@ $(function() {
               }
             });
           }
-          console.log("Messaging...");
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
             lat: latLng.lat,
