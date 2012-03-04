@@ -34,16 +34,15 @@ Crafty.c("otherPlayerComponent", {
   init: function() {
     this.bind("EnterFrame", function() {
       if (Crafty.frame() % 2 == 0) {
-        var data = Game.otherPlayers[this.player_id];
-        if (data.lat && data.lng) {
-          var xy = Game.helpers.latLngtoXY([data.lat, data.lng]);
+        if (this.lat && this.lng) {
+          var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
           this.x = xy[0];
           this.y = xy[1];
           this.z = xy[1];
         } else {
-          this.x = -100;
-          this.y = -100;
-          this.z = -100;
+          this.x = 10;
+          this.y = 10;
+          this.z = 10;
         }
       }
     });
