@@ -73,8 +73,24 @@ var B = function() {
           },
           map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
 
-      Microsoft.Maps.loadModule('Microsoft.Maps.VenueMaps', {callback: self.venuemapsModuleLoaded});
+      // export
       window.map = map;
+
+      // venues
+      Microsoft.Maps.loadModule('Microsoft.Maps.VenueMaps', {callback: self.venuemapsModuleLoaded});
+
+      // waypoint
+      self.putWaypoint();
+    },
+
+    putWaypoint: function() {
+      var center = map.getCenter(),
+          pin = new Microsoft.Maps.Pushpin({latitude: origin.lat, longitude: origin.long}, {
+            draggable: true,
+            icon: '/images/sprites/waypoint_flag.gif',
+            width: 36, height: 64
+          });
+      map.entities.push(pin);
     },
 
     reset: function() {

@@ -15,13 +15,15 @@ $(function() {
     "/images/sprites/ghost_small.gif",
     "/images/sprites/zombie.gif",
     "/images/sprites/beholder.gif",
+    "/images/sprites/diablos.gif",
     "/images/sprites/roc.gif",
     "/images/sprites/bat.gif",
+    "/images/sprites/bat_mad.gif",
     "/images/sprites/firebrand.gif"
   ];
   Crafty.load(SPRITES, function() {
     Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSprite: [0,0,1,1.5] });
-    Crafty.sprite(64, "/images/sprites/bat.gif", { ghostSprite: [0,0,1,1.5] });
+    Crafty.sprite(64, "/images/sprites/bat_mad.gif", { ghostSprite: [0,0,1,1.5] });
   });
 
   // Helper functions
