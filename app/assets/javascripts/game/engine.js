@@ -16,7 +16,9 @@ $(function() {
     Crafty.scene(scene);
   };
   Game.helpers.addOtherPlayer = function(player_id) {
-    Crafty.e("2D, DOM, playerComponent, playerSprite").attr({ player_id: player_id });
+    Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr({
+      player_id: player_id
+    });
   };
   Game.helpers.allPlayerLocations = function() {
     _.each(_.keys(Game.otherPlayers), function(k) {
@@ -32,10 +34,6 @@ $(function() {
       lat: lat,
       lng: lng
     }
-  };
-  Game.helpers.XYtoLatLng = function(xy) {
-    var mapBounds = map.getBounds();
-    return [lat,lng];
   };
   Game.helpers.latLngtoXY = function(latLng) {
     var mapBounds = map.getBounds();
@@ -82,8 +80,6 @@ $(function() {
         yspeed: 3,
         x: 480-16,
         y: 300-24,
-        w: 32,
-        h: 48,
         moving: {
           left: false,
           right: false,
@@ -179,7 +175,7 @@ $(function() {
           case Crafty.keys.S: this.moving.down = false; break;
           case Crafty.keys.SPACE: break;
         }
-      });
+      })
     Game.player = player;
     pubsubInit();
 

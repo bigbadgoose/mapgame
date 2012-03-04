@@ -7,9 +7,24 @@ Crafty.c("playerComponent", {
       yspeed: 3,
       x: 30,
       y: 30,
-      w: 32,
-      h: 48
     });
+    this.addComponent("Collision")
+      .collision()
+      .onHit("powerup", function() {
+        console.log("Got a powerup!");
+      })
+      .onHit("waypoint", function() {
+        console.log("Waypoint reached!");
+      })
+      .onHit("enemyBullet", function(e) {
+        e[0].obj.destroy();
+        console.log("OUCH");
+      });
+  }
+});
+
+Crafty.c("otherPlayerComponent", {
+  init: function() {
     this.bind("EnterFrame", function() {
       if (Crafty.frame() % 2 == 0) {
         var data = Game.otherPlayers[this.player_id];
@@ -89,6 +104,13 @@ Crafty.c("bullet", {
         this.destroy();
       }
     });
+  }
+});
+
+Crafty.c("waypoint", {
+  init: function() {
+
+
   }
 });
 
