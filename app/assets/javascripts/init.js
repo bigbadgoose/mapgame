@@ -41,7 +41,7 @@ $(function() {
 
   // S.play('zap01');
   // S.play('zap02');
-  S.play('zap03');
+  S.play('prepare');
   //S.play('kickstart', .2);
 
   //FX.adviceAnimal('biteoff');
