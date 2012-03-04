@@ -41,6 +41,16 @@ body {
   position: relative;
 }
 
+#overlay {
+  border: 2px solid red;
+  background: black;
+  opacity: 0.1;
+  width: $game_width;
+  height: $game_height;
+  overflow: hidden;
+  position: absolute !important;
+  z-index: 1;
+}
 #map_div {
   background: #ccc;
   border: 2px solid red;
@@ -54,7 +64,7 @@ body {
   border: 2px solid #000;
   position: absolute !important;
   top: 0; left: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 #messages {
