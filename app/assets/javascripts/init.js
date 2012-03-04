@@ -1,7 +1,7 @@
 // Constants
-
 const WIDTH = 960;
 const HEIGHT = 600;
+
 
 // Globals
 var Game = {
@@ -27,4 +27,8 @@ $(function() {
   setTimeout(function() {
     Game.helpers.loadScene("game");
   }, 500);
+
+  S.play('zap01');
+  S.play('zap02');
+  S.play('zap03');
 });

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require messages
 //= require bing
+//= require sound
 //= require init
 //= require ./lib/underscore
 //= require ./lib/pusher.min
