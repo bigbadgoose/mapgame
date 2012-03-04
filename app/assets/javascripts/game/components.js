@@ -105,22 +105,15 @@ Crafty.c("ghostComponent", {
     });
     this.addComponent("Collision")
       .collision()
-      .onHit("playerBullet", function(e) {
-        this.destroy();
-        Crafty.e("2D, DOM, explosion, explosionSprite").attr({
-          x: this.x,
-          y: this.y,
-          z: this.y
-        });
-        e[0].obj.destroy();
-      })
       .onHit("enemyDestroyingExplosion", function(e) {
-        this.destroy();
         Crafty.e("2D, DOM, explosion, explosionSprite").attr({
-          x: this.x,
-          y: this.y,
-          z: this.y
+          lat: this.lat,
+          lng: this.lng,
+          z: 900,
+          w: 67,
+          h: 174
         });
+        this.destroy();
       });
   }
 });
@@ -135,10 +128,12 @@ Crafty.c("enemyDestroyingExplosion", {
       x: 0,
       y: 0,
       w: 960,
-      h: 480
+      h: 480,
+      frame: 0
     });
     this.bind("EnterFrame", function() {
-      if (Crafty.frame() % 60 == 0) {
+      this.frame++;
+      if (this.frame > 5) {
         this.destroy();
       }
     });
@@ -170,10 +165,20 @@ Crafty.c("bullet", {
 
 Crafty.c("explosion", {
   init: function() {
-    this.frame = 0;
+    this.attr({
+      frame: 0
+    });
     this.bind("EnterFrame", function() {
+      if (Crafty.frame() % 2 == 0) {
+        if (this.lat && this.lng) {
+          var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+          this.x = xy[0]-20;
+          this.y = xy[1]-48;
+          this.z = xy[1]-48;
+        }
+      }
       this.frame++;
-      if (this.frame > 60) {
+      if (this.frame > 45) {
         this.destroy();
       }
     });
