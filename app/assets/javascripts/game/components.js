@@ -18,8 +18,6 @@ Crafty.c("playerComponent", {
           this.x = xy[0];
           this.y = xy[1];
           this.z = xy[1];
-        } else {
-          this.destroy();
         }
       }
     });
