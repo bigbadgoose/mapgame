@@ -10,6 +10,7 @@ var Game = {
   waypointIndicator: false,
   player: false,
   otherPlayers: {},
+  messageCounters: {},
   entities: {
     player: false
   },
@@ -32,7 +33,7 @@ $(function() {
   M.init($('#messages'));
   setTimeout(function() {
     Game.helpers.loadScene("game");
-  }, 500);
+  }, 1000);
 
   S.play('zap01');
   S.play('zap02');

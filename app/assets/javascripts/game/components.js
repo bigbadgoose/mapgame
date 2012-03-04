@@ -32,6 +32,9 @@ Crafty.c("playerComponent", {
 
 Crafty.c("otherPlayerComponent", {
   init: function() {
+    this.attr({
+      missing: 0
+    });
     this.bind("EnterFrame", function() {
       if (Crafty.frame() % 2 == 0) {
         if (this.lat && this.lng) {
@@ -40,9 +43,17 @@ Crafty.c("otherPlayerComponent", {
           this.y = xy[1];
           this.z = xy[1];
         } else {
+          this.missing++;
           this.x = 10;
           this.y = 10;
           this.z = 10;
+          if (this.missing > 10) {
+            this.destroy();
+            var player = Game.otherPlayers[this.user_id];
+            if (player) {
+              delete Game.otherPlayers[this.user_id];
+            }
+          }
         }
       }
     });
