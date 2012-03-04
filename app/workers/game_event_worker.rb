@@ -9,10 +9,9 @@ class GameEventWorker < IronWorker::Base
 
     10.times do 
       Pusher['presence-mapgame_global'].trigger!('server_game_event', {
-        :type => 'ownage',
-        :text => "LOL"
+        :type => 'spawn',
       })
-      sleep 2
+      sleep 1
     end
   end
 end
