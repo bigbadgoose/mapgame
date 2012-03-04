@@ -2,6 +2,10 @@
 const WIDTH = 960;
 const HEIGHT = 600;
 
+// Fix spacebar shit
+window.onkeydown = function(e) { 
+  return !(e.keyCode == 32);
+};
 
 // Globals
 var Game = {
