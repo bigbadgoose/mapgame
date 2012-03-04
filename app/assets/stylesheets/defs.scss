@@ -36,9 +36,17 @@ $game_height: 600px;
   user-select: none;
 }
 
-@mixin transition {
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+@mixin transition($trans: all 0.3s ease-out) {
+  -webkit-transition: $trans;
+  -moz-transition: $trans;
+  -ms-transition: $trans;
+  transition: $trans;
+}
+
+@mixin transform($xform: rotate(360deg)) {
+  -ms-transform: $xform;
+  -moz-transform: $xform;
+  -webkit-transform: $xform;
+  -o-transform: $xform;
+  transform: $xform;
 }
