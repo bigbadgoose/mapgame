@@ -50,6 +50,13 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
+        if (Crafty.frame() % 160 == 0) {
+          window.shit = Game.pubsub;
+          Game.pubsub.trigger("client-player_move", {
+            x: this.x,
+            y: this.y
+          });
+        }
         if (this.moving.left) {
           this.x -= this.xspeed;
         } else if (this.moving.right) {

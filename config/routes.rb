@@ -25,6 +25,7 @@ Mapgame::Application.routes.draw do
   #     end
   #   end
   resources :games
+  match '/pusher/auth' => 'pusher#auth'
 
   # Sample resource route with sub-resources:
   #   resources :products do

@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require init
 //= require ./lib/pusher.min
 //= require ./lib/crafty-0.4.6.min
-//= require_tree ./game
-//= require_tree .
+//= require ./game/pubsub
+//= require ./game/engine
+//= require_self
 
