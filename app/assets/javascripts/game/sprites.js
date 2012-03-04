@@ -35,7 +35,10 @@ Crafty.load(SPRITES, function() {
   Crafty.sprite(64, "/images/sprites/kirby_right.gif", { playerKirbySprite: [0,0,1,1.5] });
 
   Crafty.sprite(64, "/images/sprites/bat_mad.gif", { ghostSprite: [0,0,1,1.5] });
+
   Crafty.sprite(67, "/images/sprites/fx_explosion.gif", { explosionSprite: [0,0,1,2.6] });
+  Crafty.sprite(32, "/images/sprites/fx_bomb.gif", { bombSprite: [0,0,1.5,1] });
+
   Crafty.sprite(32, "/images/sprites/waypoint_flag.gif", { waypointSprite: [0,0,1,2] });
   Crafty.sprite(34, "/images/sprites/arrow.png", { arrowSprite: [0,0,1,1] });
 });

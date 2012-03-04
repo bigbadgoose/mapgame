@@ -28,6 +28,9 @@ function pubsubInit() {
   channel.bind('client-waypoint_reached', function(data) {
     spawnNextWaypoint(data.index);
   });
+  channel.bind('client-explode_everything', function(data) {
+    spawnExplodeEverything();
+  });
 
   channel.bind("server_game_event", function(data) {
     if (data.type == 'spawn') {

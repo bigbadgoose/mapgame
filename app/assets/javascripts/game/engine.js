@@ -70,8 +70,8 @@ $(function() {
     spawnNextWaypoint();
   };
   Game.helpers.explodeEverything = function() {
-    console.log("Exploding EVERYTHING!!!");
-    Crafty.e("2D, DOM, enemyDestroyingExplosion");
+    Game.pubsub.trigger("client-explode_everything", {});
+    spawnExplodeEverything();
   };
   Game.helpers.getPlayerSprite = function(str) {
     switch (str.charCodeAt(0) % 4) {

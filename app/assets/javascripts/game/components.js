@@ -141,6 +141,61 @@ Crafty.c("enemyDestroyingExplosion", {
 });
 
 
+// Explosion sprites hack
+Crafty.c("preExplosion0", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x - 30;
+      this.y = Game.player.y;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion1", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x;
+      this.y = Game.player.y - 30;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion2", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x;
+      this.y = Game.player.y + 30;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion3", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x + 30;
+      this.y = Game.player.y;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+
+
 // Misc entities
 Crafty.c("bullet", {
   init: function() {

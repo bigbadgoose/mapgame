@@ -60,3 +60,17 @@ function spawnNextWaypoint(data) {
     })
   }
 }
+
+function spawnExplodeEverything() {
+  console.log("Exploding EVERYTHING!!!");
+  var latLng = Game.helpers.getPlayerLatLng();
+  Crafty.e("2D, DOM, preExplosion0, bombSprite").attr({ x: Game.player.x, y: Game.player.y });
+  Crafty.e("2D, DOM, preExplosion1, bombSprite").attr({ x: Game.player.x, y: Game.player.y });
+  Crafty.e("2D, DOM, preExplosion2, bombSprite").attr({ x: Game.player.x, y: Game.player.y });
+  Crafty.e("2D, DOM, preExplosion3, bombSprite").attr({ x: Game.player.x, y: Game.player.y });
+
+  setTimeout(function() {
+    Crafty.e("2D, DOM, enemyDestroyingExplosion");
+  }, 1000);
+}
+
