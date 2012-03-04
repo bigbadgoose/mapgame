@@ -18,5 +18,6 @@
 //= require ./lib/crafty-0.4.6.min
 //= require ./game/pubsub
 //= require ./game/engine
+//= require ./game/components
 //= require_self
 

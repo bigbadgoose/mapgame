@@ -3,33 +3,10 @@ $(function() {
 
   Crafty.load(SPRITES, function() {
     Crafty.sprite(32, "/images/sprites/player.gif", { playerSprite: [0,0,1,1.5] });
+    Crafty.sprite(32, "/images/sprites/ghost.gif", { ghostSprite: [0,0,1,1.5] });
   });
 
-  // Player character component
-  Crafty.c("playerComponent", {
-    init: function() {
-      this.origin("center");
-      this.attr({
-        xspeed: 3,
-        yspeed: 3,
-        x: 200,
-        y: 200,
-        w: 32,
-        h: 48
-      });
-      this.bind("EnterFrame", function() {
-        if (Crafty.frame() % 2 == 0) {
-          var data = Game.otherPlayers[this.player_id];
-          if (data.lat && data.lng) {
-            var xy = Game.helpers.latLngtoXY([data.lat, data.lng]);
-            this.x = xy[0];
-            this.y = xy[1];
-            this.z = xy[1];
-          }
-        }
-      });
-    }
-  });
+  // Components
 
   // Helper functions
   Game.helpers.loadScene = function(scene) {
@@ -61,7 +38,10 @@ $(function() {
   };
   Game.helpers.setMapCenter = function() {
     map.setView({ center: new Microsoft.Maps.Location(testLat,testLng) });
-  }
+  };
+  Game.helpers.spawnGhost = function() {
+    Crafty.e("2D, DOM, ghostSprite, ghostComponent");
+  };
 
   // Scenes
   Crafty.scene("game", function() {
@@ -157,8 +137,9 @@ $(function() {
           case Crafty.keys.A: this.moving.left = true; this.moving.right = false; break;
           case Crafty.keys.W: this.moving.up = true; this.moving.down = false; break;
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
-          //case Crafty.keys.P: map.setView({center:new Microsoft.Maps.Location(37.794254, -122.419453)}); break;
+
           case Crafty.keys.P: B.reset(); break;
+          case Crafty.keys.G: Game.helpers.spawnGhost(); break;
         }
       })
       .bind("KeyUp", function(e) {
