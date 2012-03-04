@@ -11,6 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120304030506) do
+
+  create_table "positions", :force => true do |t|
+    t.string  "user_id"
+    t.decimal "lat",     :precision => 18, :scale => 15
+    t.decimal "lng",     :precision => 18, :scale => 15
+  end
+
+  add_index "positions", ["user_id"], :name => "index_positions_on_user_id"
 
 end
