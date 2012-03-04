@@ -1,6 +1,12 @@
-<h2>MapGame</h2>
+<header class="boundary">
 
-<div id="map_div"></div>
+<h1>MapGame</h1>
+</header>
+
+<div class="boundary" id="game_board">
+  <div id="map_div"></div>
+  <div id="cr-stage"></div>
+</div>
 
 
 <script>
@@ -11,6 +17,8 @@
       center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
       disableBirdseye: true,
       showDashboard: false,
+      width: <%= GamesController::ARENA_WIDTH %>,
+      height: <%= GamesController::ARENA_HEIGHT %>,
       zoom: 20
     },
     map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
@@ -19,9 +27,7 @@
   $(function() {
     getMap();
   });
-</script>
 
-<script type="text/javascript">
   Game.user_id = '<%= session[:user_id] %>';
 
   $(function() {

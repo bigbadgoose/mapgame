@@ -1,6 +1,4 @@
-//const WIDTH = "100%";
-//const HEIGHT = "100%";
-const WIDTH = 800;
+const WIDTH = 960;
 const HEIGHT = 600;
 
 const SPRITES = [
@@ -8,7 +6,7 @@ const SPRITES = [
 ];
 
 var Game = {
-  entities: { 
+  entities: {
     player: false
   },
   helpers: {
@@ -19,7 +17,6 @@ window.Game = Game;
 
 $(function() {
   Crafty.init(WIDTH, HEIGHT);
-  //Crafty.init();
 
   Crafty.load(SPRITES, function() {
     console.log("Loading sprites!");
@@ -29,7 +26,6 @@ $(function() {
   // Scenes
   Crafty.scene("game", function() {
     // Begin - game scene
-
     console.log("New game start!");
 
     var player = Crafty

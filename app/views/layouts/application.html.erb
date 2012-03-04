@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title></title>
-  <meta charset="utf-8">
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-<script type="text/javascript"
-src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-
-</head>
+  <head>
+  <title></title>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <%= csrf_meta_tags %>
+  </head>
 <body>
 
-  <%= yield %>
+  <div id="wrapper">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

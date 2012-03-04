@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-  ARENA_WIDTH = 800;
+  ARENA_WIDTH = 960;
   ARENA_HEIGHT = 600;
 
   def index

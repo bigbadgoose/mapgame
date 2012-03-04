@@ -1,10 +1,20 @@
+h1 {
+  margin: 20px 0;
+}
+
+
+#game_board {
+  position: relative;
+}
+
 #map_div {
   background: #ccc;
   width: <%= GamesController::ARENA_WIDTH %>px;
   height: <%= GamesController::ARENA_HEIGHT %>px;
-  position: absolute;
+  border: 2px solid red;
 }
 #cr-stage {
-  margin: 0 auto;
   border: 2px solid #333;
+  position: absolute !important;
+  top: 0; left: 0;
 }
