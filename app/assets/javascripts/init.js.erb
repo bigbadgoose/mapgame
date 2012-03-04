@@ -34,7 +34,13 @@ var M = function() {
       var self = this;
       self.stuff.el = ele;
     },
+    log: function(val, type) {
+      this.append(val, type);
+    },
     add: function(val, type) {
+      this.append(val, type);
+    },
+    append: function(val, type) {
       var self = this,
           msg = $('<p>').
             addClass(type).
