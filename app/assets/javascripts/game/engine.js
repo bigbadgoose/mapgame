@@ -23,6 +23,7 @@ $(function() {
           if (data.x && data.y) {
             this.x = data.x;
             this.y = data.y;
+            this.z = data.y
           }
         }
       });
@@ -80,6 +81,7 @@ $(function() {
         } else if (this.moving.down) {
           this.y += this.yspeed;
         }
+        this.z = this.y;
       })
       .bind("KeyDown", function(e) {
         switch (e.keyCode) {

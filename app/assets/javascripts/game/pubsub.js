@@ -1,7 +1,7 @@
 function pubsubInit() {
   // Enable pusher logging - don't include this in production
   Pusher.log = function(message) {
-    if (window.console && window.console.log) window.console.log(message);
+    // if (window.console && window.console.log) window.console.log(message);
   };
 
   // Flash fallback logging - don't include this in production
