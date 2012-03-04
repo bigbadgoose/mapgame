@@ -68,6 +68,25 @@ body {
   @include transition(all 1s ease-out);
 }
 
+#health {
+  background: rgba(0,0,0,.7) url('/images/health_box.png') 3px 4px no-repeat;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  width: 116px;
+  height: 42px;
+  @include radius;
+  > #score {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+  }
+}
+
 #map_div {
   background: #ccc;
   border: 2px solid red;
