@@ -8,3 +8,8 @@ function spawnGhost(data) {
     bullets: data.bullets
   });
 }
+
+function spawnNextWaypoint() {
+  // Create a new waypoint to go towards
+  Game.waypoint;
+}
