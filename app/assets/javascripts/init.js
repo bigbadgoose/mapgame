@@ -57,11 +57,10 @@ var M = function() {
 
 // -------------------------------------------- BING MAPS
 var B = function() {
+  var origin = {lat:37.794254, long:-122.419453};
+
   return {
-
-    origin: {lat:37.794254, long:-122.419453},
     center: {lat:37.794254, long:-122.419453},
-
     init: function() {
       var self = this,
           mapOpts = {
@@ -82,7 +81,7 @@ var B = function() {
     },
 
     reset: function() {
-      map.setView({center: new Microsoft.Maps.Location(this.origin.lat, this.origin.long)});
+      map.setView({center: new Microsoft.Maps.Location(origin.lat, origin.long)});
       M.log('reset');
     },
 
@@ -93,16 +92,16 @@ var B = function() {
         map: map,
         location: map.getCenter(),
         radius:10000,
-        callback: self.DisplayNearbyVenueCount
+        callback: B.showVenues
       });
     },
 
-    displayNearbyVenues: function(venues) {
+    showVenues: function(venues) {
        var displayResults = "Nearby venues with available venue maps:\n";
        for (var i=0; i<venues.length; i++) {
           displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
        }
-       M.log(displayResults);
+       M.log('venues: ' + displayResults);
     }
   }
 }();
