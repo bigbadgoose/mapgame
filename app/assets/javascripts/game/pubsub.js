@@ -30,8 +30,13 @@ function pubsubInit() {
   });
 
   channel.bind("server_game_event", function(data) {
-    console.log("Event received!!!");
-    console.dir(data);
+    if (data.type == 'spawn') {
+      console.log("Spawn command received!");
+      Game.helpers.spawnGhost();
+    } else {
+      console.log("Event received!!!");
+      console.dir(data);
+    }
   });
 
   channel.bind('pusher:subscription_succeeded', function(data) {
