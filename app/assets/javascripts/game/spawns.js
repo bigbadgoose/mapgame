@@ -37,6 +37,25 @@ function spawnNextWaypoint(data) {
           w: 64,
           h: 64
         });
+
+        Crafty.e("2D, DOM, Text")
+          .text(title)
+          .attr({
+            lat: lat,
+            lng: lng,
+            w: 100,
+            h: 25
+          })
+          .css({ color: '#000' })
+          .bind("EnterFrame", function() {
+            if (Crafty.frame() % 2 == 0) {
+              if (this.lat && this.lng) {
+                var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+                this.x = xy[0];
+                this.y = xy[1];
+              }
+            }
+          });
       }
     })
     // if (i == Game.waypoints.list.length) {
