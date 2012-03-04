@@ -3,16 +3,57 @@ $(function() {
 
   Crafty.load(SPRITES, function() {
     console.log("Loading sprites!");
-    Crafty.sprite(32, "/images/sprites/player.gif", { player: [0,0,1,1.5] });
+    Crafty.sprite(32, "/images/sprites/player.gif", { playerSprite: [0,0,1,1.5] });
   });
+
+  // Player character component
+  Crafty.c("playerComponent", {
+    init: function() {
+      console.log(" --- PC CREATED!!!! --- ");
+      this.origin("center");
+      this.attr({
+        xspeed: 3,
+        yspeed: 3,
+        x: 200,
+        y: 200,
+        w: 32,
+        h: 48
+      });
+      this.bind("EnterFrame", function() {
+        if (Crafty.frame() % 20 == 0) {
+          var data = Game.otherPlayers[this.player_id];
+          console.log("Checking ID: " + this.player_id);
+          console.dir(data);
+          if (data.x && data.y) {
+            console.log("Updating positions...");
+            this.x = data.x;
+            this.y = data.y;
+          }
+          console.log(this.player_id + " - " + "x:" + data.x + ", y:" + data.y);
+        }
+      });
+    }
+  });
+
+  // Helper functions
+  Game.helpers.loadScene = function(scene) {
+    Crafty.scene(scene);
+  };
+  Game.helpers.addOtherPlayer = function(player_id) {
+    console.log("Other Player ID:" + player_id);
+    Crafty.e("2D, DOM, playerComponent, playerSprite").attr({ player_id: player_id });
+  };
+  Game.helpers.updateOtherPlayer = function(player_id, data) {
+
+  };
+
 
   // Scenes
   Crafty.scene("game", function() {
     // Begin - game scene
-    console.log("New game start!");
 
     var player = Crafty
-      .e("2D, DOM, player, pc, Controls, Collision")
+      .e("2D, DOM, playerSprite, Controls, Collision")
       .attr({
         xspeed: 3,
         yspeed: 3,
@@ -28,7 +69,7 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 160 == -1) {
+        if (Crafty.frame() % 20 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
@@ -65,28 +106,10 @@ $(function() {
         }
       });
     Game.player = player;
+    pubsubInit();
 
     // End - game scene
   });
 
-  // Player character component
-  Crafty.c("pc", {
-    init: function() {
-      this.origin("center");
-      this.attr({
-        xspeed: 3,
-        yspeed: 3,
-        x: 200,
-        y: 200,
-        w: 32,
-        h: 48
-      })
-    }
-  });
-
-  Game.helpers.loadScene = function(scene) {
-    console.log("Loading scene! - " + scene);
-    Crafty.scene(scene);
-  };
 });
 
