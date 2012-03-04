@@ -20,7 +20,7 @@ function pubsubInit() {
     }
   });
   channel.bind('client-spawn_enemy', function(data) {
-    Crafty.e(data.components);
+    spawnGhost(data);
   });
 
   channel.bind('pusher:subscription_succeeded', function(data) {

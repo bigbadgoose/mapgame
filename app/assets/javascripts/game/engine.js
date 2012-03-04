@@ -44,14 +44,14 @@ $(function() {
   Game.helpers.spawnGhost = function() {
     var mapBounds = map.getBounds();
     var latLng = [
-      mapBounds.center.latitude + mapBounds.height/2,
-      mapBounds.center.longitude - mapBounds.width/2
+      mapBounds.center.latitude + mapBounds.height/5,
+      mapBounds.center.longitude - mapBounds.width/5
     ];
-    console.log("Spawning a ghost!");
+
     var data = {
       components: "2D, DOM, ghostSprite, ghostComponent",
-      spawnLocation: latLng,
-      v: [-1,1],
+      latLng: latLng,
+      v: [Math.random()*2-1, Math.random()*2-1],
       bullets: (function() {
         var b = [];
         for (var i=0; i<20; ++i) {
@@ -62,11 +62,8 @@ $(function() {
         return b;
       })()
     };
-    Game.pubsub.trigger("client-spawn-enemy", data);
-    Crafty.e(data.components).attr({
-      lat: latLng[0],
-      lng: latLng[1]
-    });
+    Game.pubsub.trigger("client-spawn_enemy", data);
+    spawnGhost(data);
   };
 
   // Scenes

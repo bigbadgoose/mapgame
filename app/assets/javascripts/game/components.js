@@ -49,14 +49,17 @@ Crafty.c("ghostComponent", {
       var x = this.x,
           y = this.y;
       if (Crafty.frame() % 30 == 0) {
-        Crafty.e("2D, DOM, Color, bullet, enemyBullet").color("red").attr({
-          lat: this.lat,
-          lng: this.lng,
-          w: 6,
-          h: 6,
-          latSpeed: -0.00005,
-          lngSpeed: 0.00005,
-        });
+        var v = this.bullets.pop();
+        if (v) {
+          Crafty.e("2D, DOM, Color, bullet, enemyBullet").color("red").attr({
+            lat: this.lat,
+            lng: this.lng,
+            w: 6,
+            h: 6,
+            latSpeed: -0.00005*v[0],
+            lngSpeed: 0.00005*v[1],
+          });
+        }
       }
       this.frame++;
       if (this.frame > 120) {

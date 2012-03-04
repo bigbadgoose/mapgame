@@ -19,5 +19,6 @@
 //= require ./game/pubsub
 //= require ./game/engine
 //= require ./game/components
+//= require ./game/spawns
 //= require_self
 
