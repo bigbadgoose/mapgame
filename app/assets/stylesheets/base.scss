@@ -1,4 +1,4 @@
-@import "defs.scss";
+@import "defs";
 
 
 /* BASE
@@ -155,7 +155,7 @@ ul.stack, ul.stack > li {padding:0px;margin:0px;list-style-type:none;}
 
 .boundary {
   margin: 0 auto;
-  width: 960px;
+  width: $boundary;
   position: relative;
 }
 .boundary:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
@@ -238,48 +238,6 @@ input:focus, textarea:focus {
   background: url('/assets/sprites.png') -40px 0 no-repeat;
   width: 27px;
   height: 27px;
-
-  /* TODO these are app specific and should be moved out */
-  &.tiny-home {
-    width: 16px;
-    height: 13px;
-    background-position: -18px -18px;
-  }
-  &.tiny-like {
-    width: 12px;
-    height: 11px;
-    background-position: 0 -20px;
-  }
-  &.tiny-unlike {
-    width: 12px;
-    height: 11px;
-    background-position: -40px -62px;
-  }
-  &.tiny-remove {
-    width: 12px;
-    height: 11px;
-    background-position: -40px -62px;
-  }
-  &.tiny-buy {
-    width: 14px;
-    height: 14px;
-    background-position: 0 -40px;
-  }
-  &.tiny-share {
-    width: 13px;
-    height: 13px;
-    background-position: -21px -41px;
-  }
-  &.tiny-pin {
-    width: 12px;
-    height: 12px;
-    background-position: -21px -61px;
-  }
-  &.tiny-tweet {
-    width: 16px;
-    height: 12px;
-    background-position: -22px -81px;
-  }
 }
 
 

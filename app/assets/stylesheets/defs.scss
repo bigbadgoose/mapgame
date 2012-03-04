@@ -1,16 +1,10 @@
 /* ----- DEFS ----- */
 
 /* ---------------------------------------------- VARS */
-
-$darkblue: #49939c;
-$darkerblue: #29737c;
-$briteblue: #9bebf4;
-$ruby: #cf3f3f;
-$rubyhover: #df3f3f;
-$rubyshadow: #9c4845;
-$tangerine: #dd4125;
-$tangerineHover: #f24729; 
-
+$red: #f00;
+$boundary: 960px;
+$game_width: $boundary;
+$game_height: 600px;
 
 /* ---------------------------------------------- MIXINS */
 

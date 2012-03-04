@@ -1,7 +1,9 @@
+@import "defs";
+
+
 h1 {
   margin: 20px 0;
 }
-
 
 #game_board {
   position: relative;
@@ -9,9 +11,9 @@ h1 {
 
 #map_div {
   background: #ccc;
-  width: <%= GamesController::ARENA_WIDTH %>px;
-  height: <%= GamesController::ARENA_HEIGHT %>px;
   border: 2px solid red;
+  width: $game_width;
+  height: $game_height;
 }
 #cr-stage {
   border: 2px solid #333;

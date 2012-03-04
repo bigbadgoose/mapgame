@@ -17,8 +17,8 @@
       center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
       disableBirdseye: true,
       showDashboard: false,
-      width: <%= GamesController::ARENA_WIDTH %>,
-      height: <%= GamesController::ARENA_HEIGHT %>,
+      width: 960,
+      height: 600,
       zoom: 20
     },
     map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
