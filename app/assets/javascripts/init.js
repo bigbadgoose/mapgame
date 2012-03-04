@@ -39,8 +39,8 @@ $(function() {
     Game.helpers.loadScene("game");
   }, 1000);
 
-  S.play('zap01');
-  S.play('zap02');
+  // S.play('zap01');
+  // S.play('zap02');
   S.play('zap03');
   //S.play('kickstart', .2);
 

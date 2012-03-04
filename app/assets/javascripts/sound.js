@@ -10,6 +10,7 @@
         zap06: path + 'zap06.wav',
         zap07: path + 'zap07.wav',
         fail:  path + 'fail-trombone.mp3',
+        explosion: path + 'explosion.wav',
         kickstart: path + 'song_kickstart.mp3'
       }
 
