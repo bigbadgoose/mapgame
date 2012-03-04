@@ -7,6 +7,8 @@ gem 'rails', '3.2.2'
 
 gem 'pg'
 gem 'pusher'
+gem 'iron_worker'
+gem 'typhoeus'
 gem 'eventbrite-client'
 
 # Gems used only for assets and not required

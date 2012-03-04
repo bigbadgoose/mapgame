@@ -29,6 +29,11 @@ function pubsubInit() {
     spawnNextWaypoint(data.index);
   });
 
+  channel.bind("server_game_event", function(data) {
+    console.log("Event received!!!");
+    console.dir(data);
+  });
+
   channel.bind('pusher:subscription_succeeded', function(data) {
   });
 
