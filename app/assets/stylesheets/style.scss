@@ -2,10 +2,9 @@
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-h1 {
-  margin: 20px 0;
+body {
+  background: black url('/images/bg_dark.png');;
 }
-
 .reticle {
   background: url('/images/reticle.png') 0 0 no-repeat;
   width: 436px;
@@ -15,6 +14,28 @@ h1 {
   left: 262px;
   z-index: 2;
 }
+
+#header {
+  h1 {
+    font-family: rokkitt, courier, monosapce;
+    display: inline-block;
+    position: relative;
+    bottom: 30px;
+    left: 20px;
+    color: #fff;
+  }
+  .sprite {display:inline-block;}
+  .sprite.logo {
+    background-position:0 0; width:225px; height:93px;
+    margin-top: 10px;
+  }
+  .sprite.keys {
+    background-position:0px -93px;width:223px; height:71px;
+    position: absolute;
+    right: 10px; bottom: 20px;
+  }
+}
+
 
 #game_board {
   position: relative;
@@ -26,12 +47,14 @@ h1 {
   width: $game_width;
   height: $game_height;
   overflow: hidden;
+  @include glow(0 0 0 5px #ff0);
 }
 
 #cr-stage {
-  border: 2px solid #333;
+  border: 2px solid #000;
   position: absolute !important;
   top: 0; left: 0;
+  z-index: 2;
 }
 
 #messages {

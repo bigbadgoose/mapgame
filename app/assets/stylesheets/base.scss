@@ -40,7 +40,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {font-weight:bold;text-rendering:optimizeLegibility;}
-h1 {font-size:26px;color:#454c53;font-weight:normal;}
+h1 {font-size:42px;color:#454c53;font-weight:normal;}
 h2 {font-size:24px;font-weight:normal;}
 h3 {font-size:16px;}
 
@@ -210,9 +210,9 @@ input:focus, textarea:focus {
 
 /* ---------------------------------------------- SPRITE */
 .sprite {
-  background: url('/assets/sprites.png') -40px 0 no-repeat;
-  width: 27px;
-  height: 27px;
+  background: url('/images/sprites.png') 0 0 no-repeat;
+  width: 32px;
+  height: 32px;
 }
 
 

@@ -22,10 +22,10 @@ $game_height: 600px;
   box-shadow: 0 1px 0 1px $color;
 }
 
-@mixin glow {
-  -moz-box-shadow: 0 0 6px rgba(255,255,255,.8);
-  -webkit-box-shadow: 0 0 6px rgba(255,255,255,.8);
-  box-shadow: 0 0 6px rgba(255,255,255,.8);
+@mixin glow($shadow: 0 0 6px rgba(255,255,255,.8)) {
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
 }
 
 @mixin noselect {
