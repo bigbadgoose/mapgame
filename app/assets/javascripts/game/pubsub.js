@@ -29,10 +29,12 @@ function pubsubInit() {
   channel.bind('pusher_internal:member_added', function(data) {
     console.log("PUSHER - A member has been added!");
     console.dir(data);
+    M.add("User:" + data.user_id + " has joined the game!");
   });
   channel.bind('pusher_internal:member_removed', function(data) {
     console.log("PUSHER - A member has been removed!");
     console.dir(data);
+    M.add("User:" + data.user_id + " has left the game!");
   });
   Game.pubsub = channel;
 }
