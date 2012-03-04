@@ -34,16 +34,15 @@ Crafty.c("otherPlayerComponent", {
   init: function() {
     this.bind("EnterFrame", function() {
       if (Crafty.frame() % 2 == 0) {
-        var data = Game.otherPlayers[this.player_id];
-        if (data.lat && data.lng) {
-          var xy = Game.helpers.latLngtoXY([data.lat, data.lng]);
+        if (this.lat && this.lng) {
+          var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
           this.x = xy[0];
           this.y = xy[1];
           this.z = xy[1];
         } else {
-          this.x = -100;
-          this.y = -100;
-          this.z = -100;
+          this.x = 10;
+          this.y = 10;
+          this.z = 10;
         }
       }
     });
@@ -142,8 +141,8 @@ Crafty.c("waypoint", {
 Crafty.c("arrow", {
   init: function() {
     this.attr({
-      r: 220,
-      rsq: 220*220,
+      r: 275,
+      rsq: 275*275,
       visible: false
     });
     this.bind("EnterFrame", function() {
@@ -159,6 +158,9 @@ Crafty.c("arrow", {
         this.x = 480 + this.r*Math.cos(angle);
         this.y = 300 - this.r*Math.sin(angle);
         this.rotation = 90 - 180*angle/Math.PI;
+      }
+      if (!waypoint && Crafty.frame() % 60 == 0) {
+        this.visible = false;
       }
     });
   }

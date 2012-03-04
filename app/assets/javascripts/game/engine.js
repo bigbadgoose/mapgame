@@ -1,3 +1,4 @@
+
 $(function() {
   pubsubInit();
   Crafty.init(WIDTH, HEIGHT);
@@ -6,13 +7,16 @@ $(function() {
   Game.helpers.loadScene = function(scene) {
     Crafty.scene(scene);
   };
-  Game.helpers.addOtherPlayer = function(player_id) {
-    return Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr({
-      player_id: player_id
-    });
+  Game.helpers.addOtherPlayer = function(data) {
+    return Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr(data);
   };
   Game.helpers.allPlayerLocations = function() {
-    _.each(_.keys(Game.otherPlayers), function(k) {
+    var keys = _.keys(Game.otherPlayers);
+    console.log(keys);
+    _.each(keys, function(k) {
+      console.log(k);
+      var player = Game.otherPlayers[k];
+      console.log("Player:" + k + " - x:" + player.x + ", y:" + player.y);
     });
   };
   Game.helpers.getPlayerLatLng = function() {
@@ -96,7 +100,7 @@ $(function() {
         var frame = Crafty.frame();
 
         // Send location updates to server for persistence and other clients
-        if (frame % 5 == 0) {
+        if (frame % 10 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
           if (frame % 60 == 0) {
             $.ajax({
