@@ -56,6 +56,7 @@ var B = function() {
     },
 
     showVenues: function(venues) {
+      if (!venues) return; // sometimes caller fails, no success option
       var displayResults = "Nearby venues with available venue maps:\n";
       for (var i=0; i<venues.length; i++) {
         displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
