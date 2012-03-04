@@ -86,7 +86,6 @@ var B = function() {
     },
 
     venuemapsModuleLoaded: function() {
-console.log('loaded');
       var vmaps = new Microsoft.Maps.VenueMaps.VenueMapFactory(map),
           self = this;
       vmaps.getNearbyVenues({
@@ -98,7 +97,6 @@ console.log('loaded');
     },
 
     showVenues: function(venues) {
-console.log('called');
        var displayResults = "Nearby venues with available venue maps:\n";
        for (var i=0; i<venues.length; i++) {
           displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
