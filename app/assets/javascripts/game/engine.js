@@ -48,7 +48,7 @@ $(function() {
     var lat = mapBounds.center.latitude+yOffset/300*mapBounds.height/2;
     window.testLat = lat;
     window.testLng = lng;
-    console.log("lat:" + lat + " - lng:" + lng);
+    M.add("lat:" + lat + " - lng:" + lng);
     return {
       lat: lat,
       lng: lng

@@ -4,7 +4,7 @@
 
 <div class="boundary" id="game_board">
   <div class="reticle"></div>
-  <div id="messages">YO</div>
+  <div id="messages"></div>
   <div id="map_div"></div>
   <div id="cr-stage"></div>
 </div>
@@ -16,11 +16,13 @@
     var mapOpts = {
       credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
       center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
-      disableBirdseye: true,
+      mapTypeId:Microsoft.Maps.MapTypeId.aerial,
+      //labelOverlay: Microsoft.Maps.LabelOverlay.hidden,
+      //disableBirdseye: true,
       showDashboard: false,
       width: 960,
       height: 600,
-      zoom: 20
+      zoom: 16
     },
     map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
     window.map = map;
