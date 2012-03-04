@@ -1,4 +1,5 @@
 $(function() {
+  pubsubInit();
   Crafty.init(WIDTH, HEIGHT);
 
   const SPRITES = [
@@ -40,8 +41,8 @@ $(function() {
     });
   };
   Game.helpers.getPlayerLatLng = function() {
-    var xOffset = (Game.player.x+16)-480,
-        yOffset = (Game.player.y+24)-300;
+    var xOffset = (Game.player.x+32)-480,
+        yOffset = (Game.player.y+32)-300;
     var mapBounds = map.getBounds();
     var lng = mapBounds.center.longitude+xOffset/480*mapBounds.width/2;
     var lat = mapBounds.center.latitude-yOffset/300*mapBounds.height/2;
@@ -101,10 +102,38 @@ $(function() {
           right: false,
           up: false,
           down: false
+        },
+        firing: {
+          left: false,
+          right: false,
+          up: false,
+          down: false
         }
       })
       .bind("EnterFrame", function() {
-        if (Crafty.frame() % 10 == 0) {
+        var frame = Crafty.frame();
+
+        // Send location updates to server for persistence and other clients
+        if (frame % 5 == 0) {
+          var latLng = Game.helpers.getPlayerLatLng();
+          if (Crafty.frame() % 60 == 0) {
+            $.ajax({
+              url: "/positions",
+              type: "POST",
+              data: {
+                lat: latLng.lat,
+                lng: latLng.lng
+              }
+            });
+          }
+          Game.pubsub.trigger("client-player_move", {
+            user_id: Game.user_id,
+            lat: latLng.lat,
+            lng: latLng.lng
+          });
+        }
+
+        if (frame % 10 == 0) {
           if (this.moving.left || this.moving.right || this.moving.up || this.moving.down) {
             var mapBounds = map.getBounds();
             var offsetRatioX = (this.x+16-480)/480;
@@ -124,27 +153,29 @@ $(function() {
           }
         }
 
-        if (Crafty.frame() % 5 == 0) {
-          var latLng = Game.helpers.getPlayerLatLng();
-
-          // Send location update to server for persistence
-          if (Crafty.frame() % 60 == 0) {
-            $.ajax({
-              url: "/positions",
-              type: "POST",
-              data: {
-                lat: latLng.lat,
-                lng: latLng.lng
-              }
+        // Handle firing of bullets and directions
+        if (frame % 30 == 0) {
+          if (this.firing.left || this.firing.right || this.firing.up || this.firing.down) {
+            var x = 0, y = 0;
+            if (this.firing.left) {
+              x = -5;
+            } else if (this.firing.right) {
+              x = 5;
+            }
+            if (this.firing.up) {
+              y = -5;
+            } else if (this.firing.down) {
+              y = 5;
+            }
+            Crafty.e("2D, DOM, Color, bullet, playerBullet").color("blue").attr({
+              lat: latLng.lat,
+              lng: latLng.lng,
+              w: 6,
+              h: 6,
+              latSpeed: -0.00005*y,
+              lngSpeed: 0.00005*x
             });
           }
-
-          // Send location updates to all other connected clients
-          Game.pubsub.trigger("client-player_move", {
-            user_id: Game.user_id,
-            lat: latLng.lat,
-            lng: latLng.lng
-          });
         }
 
         // Handle moving within a boundary within field of view
@@ -179,6 +210,11 @@ $(function() {
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
           case Crafty.keys.SPACE: break;
 
+          case Crafty.keys.J: this.firing.left = true; this.firing.right = false; break;
+          case Crafty.keys.L: this.firing.right = true; this.firing.left = false; break;
+          case Crafty.keys.I: this.firing.up = true; this.firing.down = false; break;
+          case Crafty.keys.K: this.firing.down = true; this.firing.up = false; break;
+
           case Crafty.keys.P: B.reset(); break;
           case Crafty.keys.G: Game.helpers.spawnGhost(); break;
         }
@@ -190,10 +226,14 @@ $(function() {
           case Crafty.keys.W: this.moving.up = false; break;
           case Crafty.keys.S: this.moving.down = false; break;
           case Crafty.keys.SPACE: break;
+
+          case Crafty.keys.J: this.firing.left = false; break;
+          case Crafty.keys.L: this.firing.right = false; break;
+          case Crafty.keys.I: this.firing.up = false; break;
+          case Crafty.keys.K: this.firing.down = false; break;
         }
       })
     Game.player = player;
-    pubsubInit();
 
     // End - game scene
   });
