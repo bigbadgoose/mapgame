@@ -9,6 +9,7 @@ gem 'pg'
 gem 'pusher'
 gem 'iron_worker'
 gem 'typhoeus'
+gem 'eventbrite-client'
 
 # Gems used only for assets and not required
 # in production environments by default.
