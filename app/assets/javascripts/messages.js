@@ -23,7 +23,7 @@ var M = function() {
           msg = $('<p>').
             addClass(type).
             html(val);
-      self.stuff.el.append(msg);
+      self.stuff.el.prepend(msg);
     },
     clear: function(val) {
       M.stuff.el.empty();

@@ -24,4 +24,5 @@
 //= require ./game/spawns
 //= require ./game/sprites
 //= require ./game/engine
+//= require ./game/waypoints
 //= require_self

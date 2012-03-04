@@ -29,6 +29,9 @@ function pubsubInit() {
   channel.bind('client-spawn_enemy', function(data) {
     spawnGhost(data);
   });
+  channel.bind('client-waypoint_reached', function(data) {
+    spawnNextWaypoint(data.index);
+  });
 
   channel.bind('pusher:subscription_succeeded', function(data) {
     // console.log("PUSHER - Subscribed to channel!");

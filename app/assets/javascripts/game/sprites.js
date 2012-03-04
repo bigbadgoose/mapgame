@@ -18,12 +18,15 @@ const SPRITES = [
   "/images/sprites/bat_mad.gif",
   "/images/sprites/firebrand.gif",
   // effects
-  "/images/sprites/fx_explosion.gif"
+  "/images/sprites/fx_explosion.gif",
+  // misc
+  "/images/sprites/waypoint_flag.gif"
 ];
 
 Crafty.load(SPRITES, function() {
   Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSprite: [0,0,1,1.5] });
   Crafty.sprite(64, "/images/sprites/bat_mad.gif", { ghostSprite: [0,0,1,1.5] });
   Crafty.sprite(16, "/images/sprites/fx_explosion.gif", { explosionSprite: [0,0,1,1] });
+  Crafty.sprite(32, "/images/sprites/waypoint_flag.gif", { waypointSprite: [0,0,1,2] });
 });
 

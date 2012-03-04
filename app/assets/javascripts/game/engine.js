@@ -59,13 +59,17 @@ $(function() {
     Game.pubsub.trigger("client-spawn_enemy", data);
     spawnGhost(data);
   };
+  Game.helpers.spawnNextWaypoint = function() {
+    Game.pubsub.trigger("client-waypoint_reached", {});
+    spawnNextWaypoint();
+  };
 
   // Scenes
   Crafty.scene("game", function() {
     // Begin - game scene
 
     var player = Crafty
-      .e("2D, DOM, playerSprite, Controls, Collision")
+      .e("2D, DOM, playerComponent, playerSprite, Controls, Collision")
       .attr({
         xspeed: 3,
         yspeed: 3,
@@ -191,6 +195,7 @@ $(function() {
           case Crafty.keys.K: this.firing.down = true; this.firing.up = false; break;
 
           case Crafty.keys.P: B.reset(); break;
+          case Crafty.keys.H: Game.helpers.spawnNextWaypoint(); break;
           case Crafty.keys.G: Game.helpers.spawnGhost(); break;
         }
       })

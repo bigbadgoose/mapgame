@@ -30,13 +30,15 @@ var B = function() {
     },
 
     putWaypoint: function() {
-      var center = map.getCenter(),
+      var center = map.getCenter();
+      /*
           pin = new Microsoft.Maps.Pushpin({latitude: origin.lat, longitude: origin.long}, {
             draggable: true,
             icon: '/images/sprites/waypoint_flag.gif',
             width: 36, height: 64
           });
-      map.entities.push(pin);
+          map.entities.push(pin);
+      */
     },
 
     reset: function() {

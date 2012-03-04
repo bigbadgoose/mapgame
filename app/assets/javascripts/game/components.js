@@ -14,8 +14,14 @@ Crafty.c("playerComponent", {
       .onHit("powerup", function() {
         console.log("Got a powerup!");
       })
-      .onHit("waypoint", function() {
+      .onHit("waypoint", function(e) {
         console.log("Waypoint reached!");
+        Game.waypoints.index++;
+        var data = {
+          index: Game.waypoints.index
+        };
+        spawnNextWaypoint(data);
+        Game.pubsub.trigger("client-waypoint_reached", data);
       })
       .onHit("enemyBullet", function(e) {
         e[0].obj.destroy();
@@ -117,8 +123,19 @@ Crafty.c("bullet", {
 
 Crafty.c("waypoint", {
   init: function() {
-
-
+    this.attr({
+      x: -100,
+      y: -100
+    });
+    this.bind("EnterFrame", function() {
+      if (Crafty.frame() % 2 == 0) {
+        if (this.lat && this.lng) {
+          var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+          this.x = xy[0];
+          this.y = xy[1];
+        }
+      }
+    });
   }
 });
 

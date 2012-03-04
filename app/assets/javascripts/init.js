@@ -12,6 +12,11 @@ var Game = {
   entities: {
     player: false
   },
+  waypoints: {
+    list: [],
+    index: 0,
+    current: false
+  },
   helpers: {
     loadScene: false
   },
