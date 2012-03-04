@@ -20,14 +20,4 @@
   B.center.lat = <%= @loc[0] %>;
   B.center.long = <%= @loc[1] %>;
   Game.user_id = '<%= session[:user_id] %>';
-
-  $(function() {
-    // bing
-    B.init();
-
-    // timer
-    setTimeout(function() {
-      Game.helpers.loadScene("game");
-    }, 500);
-  });
 </script>

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require messages
+//= require bing
 //= require init
 //= require ./lib/underscore
 //= require ./lib/pusher.min
@@ -21,4 +23,3 @@
 //= require ./game/components
 //= require ./game/spawns
 //= require_self
-
