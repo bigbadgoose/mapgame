@@ -8,7 +8,9 @@ $(function() {
     Crafty.scene(scene);
   };
   Game.helpers.addOtherPlayer = function(data) {
-    return Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr(data);
+    var component = "2D, DOM, playerComponent, otherPlayerComponent";
+    component += ", " + Game.helpers.getPlayerSprite(data.user_id);
+    return Crafty.e(component).attr(data);
   };
   Game.helpers.allPlayerLocations = function() {
     var keys = _.keys(Game.otherPlayers);
@@ -71,6 +73,15 @@ $(function() {
     console.log("Exploding EVERYTHING!!!");
     Crafty.e("2D, DOM, enemyDestroyingExplosion");
   };
+  Game.helpers.getPlayerSprite = function(str) {
+    switch (str.charCodeAt(0) % 4) {
+      case 0: return "playerSaucerSprite"; break;
+      case 1: return "playerLakituSprite"; break;
+      case 2: return "playerMushboomSprite"; break;
+      case 3: return "playerKirbySprite"; break;
+    }
+    return "playerLakituSprite";
+  };
 
   // Scenes
   Crafty.scene("game", function() {
@@ -90,8 +101,9 @@ $(function() {
     var waypointIndicator = Crafty.e("2D, DOM, arrow, arrowSprite");
     Game.waypointIndicator = waypointIndicator;
 
+    var sprite = Game.helpers.getPlayerSprite(Game.user_id);
     var player = Crafty
-      .e("2D, DOM, playerComponent, playerSprite, Controls, Collision")
+      .e("2D, DOM, playerComponent, Controls, Collision, " + sprite)
       .attr({
         xspeed: 3,
         yspeed: 3,
