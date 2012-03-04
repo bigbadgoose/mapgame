@@ -83,6 +83,12 @@ Crafty.c("ghostComponent", {
         this.destroy();
       }
     });
+    this.addComponent("Collision")
+      .collision()
+      .onHit("playerBullet", function(e) {
+        this.destroy();
+        e[0].obj.destroy();
+      });
   }
 });
 

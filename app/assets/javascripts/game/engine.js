@@ -2,31 +2,6 @@ $(function() {
   pubsubInit();
   Crafty.init(WIDTH, HEIGHT);
 
-  const SPRITES = [
-    // players
-    "/images/sprites/player.gif",
-    "/images/sprites/lakitu.gif",
-    "/images/sprites/tala.gif",
-    "/images/sprites/saucer.gif",
-    "/images/sprites/librarian.gif",
-    "/images/sprites/mushboom.gif",
-    "/images/sprites/kirby_right.gif",
-    // enemies
-    "/images/sprites/ghost.gif",
-    "/images/sprites/ghost_small.gif",
-    "/images/sprites/zombie.gif",
-    "/images/sprites/beholder.gif",
-    "/images/sprites/diablos.gif",
-    "/images/sprites/roc.gif",
-    "/images/sprites/bat.gif",
-    "/images/sprites/bat_mad.gif",
-    "/images/sprites/firebrand.gif"
-  ];
-  Crafty.load(SPRITES, function() {
-    Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSprite: [0,0,1,1.5] });
-    Crafty.sprite(64, "/images/sprites/bat_mad.gif", { ghostSprite: [0,0,1,1.5] });
-  });
-
   // Helper functions
   Game.helpers.loadScene = function(scene) {
     Crafty.scene(scene);
@@ -116,7 +91,7 @@ $(function() {
         // Send location updates to server for persistence and other clients
         if (frame % 5 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
-          if (Crafty.frame() % 60 == 0) {
+          if (frame % 60 == 0) {
             $.ajax({
               url: "/positions",
               type: "POST",

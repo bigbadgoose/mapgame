@@ -20,7 +20,8 @@
 //= require ./lib/pusher.min
 //= require ./lib/crafty-0.4.6
 //= require ./game/pubsub
-//= require ./game/engine
 //= require ./game/components
 //= require ./game/spawns
+//= require ./game/sprites
+//= require ./game/engine
 //= require_self
