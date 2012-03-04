@@ -223,10 +223,10 @@ $(function() {
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
           case Crafty.keys.SPACE: break;
 
-          case Crafty.keys.J: this.firing.left = true; this.firing.right = false; break;
-          case Crafty.keys.L: this.firing.right = true; this.firing.left = false; break;
-          case Crafty.keys.I: this.firing.up = true; this.firing.down = false; break;
-          case Crafty.keys.K: this.firing.down = true; this.firing.up = false; break;
+          // case Crafty.keys.J: this.firing.left = true; this.firing.right = false; break;
+          // case Crafty.keys.L: this.firing.right = true; this.firing.left = false; break;
+          // case Crafty.keys.I: this.firing.up = true; this.firing.down = false; break;
+          // case Crafty.keys.K: this.firing.down = true; this.firing.up = false; break;
 
           case Crafty.keys.T: FX.adviceAnimal('biteoff', 'calm'); break;
           case Crafty.keys.R: FX.adviceAnimal('pwned', 'calm'); break;
@@ -246,10 +246,10 @@ $(function() {
           case Crafty.keys.S: this.moving.down = false; break;
           case Crafty.keys.SPACE: break;
 
-          case Crafty.keys.J: this.firing.left = false; break;
-          case Crafty.keys.L: this.firing.right = false; break;
-          case Crafty.keys.I: this.firing.up = false; break;
-          case Crafty.keys.K: this.firing.down = false; break;
+          // case Crafty.keys.J: this.firing.left = false; break;
+          // case Crafty.keys.L: this.firing.right = false; break;
+          // case Crafty.keys.I: this.firing.up = false; break;
+          // case Crafty.keys.K: this.firing.down = false; break;
         }
       })
     Game.player = player;
