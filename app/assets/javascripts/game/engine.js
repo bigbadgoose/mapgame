@@ -201,8 +201,9 @@ $(function() {
           case Crafty.keys.I: this.firing.up = true; this.firing.down = false; break;
           case Crafty.keys.K: this.firing.down = true; this.firing.up = false; break;
 
-          case Crafty.keys.T: FX.adviceAnimal('biteoff', 'psyco'); break;
+          case Crafty.keys.T: FX.adviceAnimal('biteoff', 'calm'); break;
           case Crafty.keys.R: FX.adviceAnimal('pwned', 'calm'); break;
+          case Crafty.keys.E: FX.adviceAnimal('umadd', 'psycho'); break;
 
           case Crafty.keys.P: B.reset(); break;
           case Crafty.keys.H: Game.helpers.spawnNextWaypoint(); break;

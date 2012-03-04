@@ -31,14 +31,14 @@
         // add close message
 
         // dismiss
-        animal$.click(function() {
+        setTimeout(function() {
           clearInterval(interval);
           map$.removeClass();
           animal$.fadeOut(500, function() {
             animal$.remove();
           });
           screenBusy = false;
-        });
+        }, 3000);
       }
     }
   }();

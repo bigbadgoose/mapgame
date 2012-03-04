@@ -94,9 +94,9 @@ body {
   }
 
   .sprite.animal {
-    @include transition(all 1s ease-out);
+    @include transition(all .5s ease-out);
     @include transform(rotate(-360deg) scale(0));
-    width: 400px; height: 430px;
+    width: 400px; height: 400px;
     position: absolute;
     top: 100px; left: 280px;
     opacity: 0;
@@ -106,14 +106,21 @@ body {
 
   &.biteoff {
     .sprite.animal {
-      background: url('/images/advice_biteoff.png') 0 0 no-repeat;
+      background: url('/images/advice_biteoff.jpg') 0 0 no-repeat;
       opacity: 1;
       @include transform(rotate(360deg) scale(1));
     }
   }
   &.pwned {
     .sprite.animal {
-      background: url('/images/advice_pwned.png') 0 0 no-repeat;
+      background: url('/images/advice_pwned.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.umadd {
+    .sprite.animal {
+      background: url('/images/advice_umadd.jpg') 0 0 no-repeat;
       opacity: 1;
       @include transform(rotate(360deg) scale(1));
     }
