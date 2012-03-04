@@ -63,6 +63,22 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
+        if (Crafty.frame() % 10 == 0) {
+          console.log("x:" + this.x + " - y: " + this.y);
+          var mapBounds = map.getBounds();
+          var offsetRatioX = (this.x-480)/480;
+          var offsetRatioY = (this.y-300)/300;
+          console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
+          var lng = mapBounds.center.longitude;
+          var lat = mapBounds.center.latitude;
+          if (Math.abs(offsetRatioX) > 0.2) {
+            lng += offsetRatioX*mapBounds.width/8;
+          }
+          if (Math.abs(offsetRatioY) > 0.2) {
+            lat += -offsetRatioY*mapBounds.height/8;
+          }
+          map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
+        }
         if (Crafty.frame() % 5 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
