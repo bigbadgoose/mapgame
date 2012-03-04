@@ -48,7 +48,7 @@ $(function() {
     var lat = mapBounds.center.latitude+yOffset/300*mapBounds.height/2;
     window.testLat = lat;
     window.testLng = lng;
-    console.log("lat:" + lat + " - lng:" + lng);
+    // console.log("lat:" + lat + " - lng:" + lng);
     return {
       lat: lat,
       lng: lng
@@ -67,8 +67,8 @@ $(function() {
       .attr({
         xspeed: 3,
         yspeed: 3,
-        x: 480,
-        y: 300,
+        x: 480-16,
+        y: 300-24,
         w: 32,
         h: 48,
         moving: {
@@ -82,21 +82,32 @@ $(function() {
         if (Crafty.frame() % 120 == 0) {
           Game.helpers.getPlayerLatLng();
         }
-        if (Crafty.frame() % 10 == 0) {
-          // console.log("x:" + this.x + " - y: " + this.y);
-          var mapBounds = map.getBounds();
-          var offsetRatioX = (this.x-480)/480;
-          var offsetRatioY = (this.y-300)/300;
+        if (Crafty.frame() % 60 == 0) {
+          var offsetRatioX = (this.x+16-480)/480;
+          var offsetRatioY = -(this.y+24-300)/300;
           // console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
-          var lng = mapBounds.center.longitude;
-          var lat = mapBounds.center.latitude;
-          if (Math.abs(offsetRatioX) > 0.2) {
-            lng += offsetRatioX*mapBounds.width/8;
+        }
+        if (Crafty.frame() % 10 == 0) {
+          if (this.moving.left || this.moving.right || this.moving.up || this.moving.down) {
+            // console.log("x:" + this.x + " - y: " + this.y);
+            var mapBounds = map.getBounds();
+            var offsetRatioX = (this.x+16-480)/480;
+            var offsetRatioY = -(this.y+24-300)/300;
+            //console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
+            var lng = mapBounds.center.longitude;
+            var lat = mapBounds.center.latitude;
+            if (this.moving.left && offsetRatioX < -0.15) {
+              lng += offsetRatioX*mapBounds.width/6;
+            } else if (this.moving.right && offsetRatioX > 0.15) {
+              lng += offsetRatioX*mapBounds.width/6;
+            }
+            if (this.moving.up && offsetRatioY > 0.15) {
+              lat += offsetRatioY*mapBounds.height/6;
+            } else if (this.moving.down && offsetRatioY < -0.15) {
+              lat += offsetRatioY*mapBounds.height/6;
+            }
+            map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
           }
-          if (Math.abs(offsetRatioY) > 0.2) {
-            lat += -offsetRatioY*mapBounds.height/8;
-          }
-          map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
         }
 
         // Send location update to server for persistence
@@ -121,15 +132,26 @@ $(function() {
             y: this.y
           });
         }
+        xOffset = this.x+16-480;
+        yOffset = this.y+24-300;
+
         if (this.moving.left) {
-          this.x -= this.xspeed;
+          if (xOffset > -150) {
+            this.x -= this.xspeed;
+          }
         } else if (this.moving.right) {
-          this.x += this.xspeed;
+          if (xOffset < 150) {
+            this.x += this.xspeed;
+          }
         }
         if (this.moving.up) {
-          this.y -= this.yspeed;
+          if (yOffset > -150) {
+            this.y -= this.yspeed;
+          }
         } else if (this.moving.down) {
-          this.y += this.yspeed;
+          if (yOffset < 150) {
+            this.y += this.yspeed;
+          }
         }
         this.z = this.y;
       })
