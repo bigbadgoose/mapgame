@@ -4,18 +4,24 @@
       sounds = {
         zap01: path + 'zap01.wav',
         zap02: path + 'zap02.wav',
-        zap03: path + 'zap03.wav'
+        zap03: path + 'zap03.wav',
+        kickstart: path + 'song_kickstart.mp3'
       }
 
-  function make(file) {
-    return new Audio(file);
+  function make(src) {
+    return new Audio(src); // creates an html5 audio element
   }
 
   var S = function() {
     return {
-      play: function(file) {
-        var sound = make(sounds[file]);
-        sound.play()
+      play: function(src, vol) {
+        var sound = make(sounds[src]);
+        sound.play();
+
+        if(vol > 0) { // uhhh, need better arg exists test
+          sound.volume = vol;
+        }
+        console.log(sound);
       }
     }
   }();
