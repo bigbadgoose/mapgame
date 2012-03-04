@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
 
-  def update
+  def create
     p = Position.find_or_create_by_user_id(session[:user_id])
     p.lat = params[:lat]
     p.lng = params[:lng]

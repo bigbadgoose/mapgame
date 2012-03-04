@@ -40,7 +40,23 @@ $(function() {
   Game.helpers.updateOtherPlayer = function(player_id, data) {
 
   };
-
+  Game.helpers.getPlayerLatLng = function() {
+    var xOffset = (Game.player.x-16)-480,
+        yOffset = (Game.player.y-24)-300;
+    var mapBounds = map.getBounds();
+    var lng = mapBounds.center.longitude+xOffset/480*mapBounds.width/2;
+    var lat = mapBounds.center.latitude+yOffset/300*mapBounds.height/2;
+    window.testLat = lat;
+    window.testLng = lng;
+    console.log("lat:" + lat + " - lng:" + lng);
+    return {
+      lat: lat,
+      lng: lng
+    }
+  };
+  Game.helpers.setMapCenter = function() {
+    map.setView({ center: new Microsoft.Maps.Location(testLat,testLng) });
+  }
 
   // Scenes
   Crafty.scene("game", function() {
@@ -51,8 +67,8 @@ $(function() {
       .attr({
         xspeed: 3,
         yspeed: 3,
-        x: 200,
-        y: 200,
+        x: 480,
+        y: 300,
         w: 32,
         h: 48,
         moving: {
@@ -63,12 +79,15 @@ $(function() {
         }
       })
       .bind("EnterFrame", function() {
+        if (Crafty.frame() % 120 == 0) {
+          Game.helpers.getPlayerLatLng();
+        }
         if (Crafty.frame() % 10 == 0) {
-          console.log("x:" + this.x + " - y: " + this.y);
+          // console.log("x:" + this.x + " - y: " + this.y);
           var mapBounds = map.getBounds();
           var offsetRatioX = (this.x-480)/480;
           var offsetRatioY = (this.y-300)/300;
-          console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
+          // console.log("offsetX:" + offsetRatioX + " - offsetY:" + offsetRatioY);
           var lng = mapBounds.center.longitude;
           var lat = mapBounds.center.latitude;
           if (Math.abs(offsetRatioX) > 0.2) {
@@ -79,6 +98,21 @@ $(function() {
           }
           map.setView({ center: new Microsoft.Maps.Location(lat,lng) });
         }
+
+        // Send location update to server for persistence
+        if (Crafty.frame() % 60 == 0) {
+          var latLng = Game.helpers.getPlayerLatLng();
+          $.ajax({
+            url: "/positions",
+            type: "POST",
+            data: {
+              lat: latLng.lat,
+              lng: latLng.lng
+            }
+          });
+        }
+
+        // Send location updates to all other connected clients
         if (Crafty.frame() % 5 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
