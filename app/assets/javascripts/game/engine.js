@@ -1,5 +1,7 @@
-const WIDTH = 600;
-const HEIGHT = 400;
+//const WIDTH = "100%";
+//const HEIGHT = "100%";
+const WIDTH = 800;
+const HEIGHT = 600;
 
 const SPRITES = [
   "/images/sprites/player.gif"
@@ -17,6 +19,7 @@ window.Game = Game;
 
 $(function() {
   Crafty.init(WIDTH, HEIGHT);
+  //Crafty.init();
 
   Crafty.load(SPRITES, function() {
     console.log("Loading sprites!");
