@@ -39,14 +39,14 @@ Crafty.c("otherPlayerComponent", {
       if (Crafty.frame() % 2 == 0) {
         if (this.lat && this.lng) {
           var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
-          this.x = xy[0];
-          this.y = xy[1];
-          this.z = xy[1];
+          this.x = xy[0]-16;
+          this.y = xy[1]-12;
+          this.z = xy[1]-12;
         } else {
           this.missing++;
-          this.x = 10;
-          this.y = 10;
-          this.z = 10;
+          this.x = -50;
+          this.y = -50;
+          this.z = -50;
           if (this.missing > 10) {
             this.destroy();
             var player = Game.otherPlayers[this.user_id];

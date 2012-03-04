@@ -72,6 +72,17 @@ $(function() {
   Crafty.scene("game", function() {
     // Begin - game scene
 
+    setTimeout(function() {
+      var keys = _.keys(Game.otherPlayers);
+      _.each(keys, function(k) {
+        var player = Game.otherPlayers[k];
+        if (player) {
+          player.destroy();
+          delete Game.otherPlayers[k];
+        }
+      });
+    }, 500);
+
     var waypointIndicator = Crafty.e("2D, DOM, arrow, arrowSprite");
     Game.waypointIndicator = waypointIndicator;
 
