@@ -46,7 +46,7 @@ function spawnNextWaypoint(data) {
             w: 100,
             h: 25
           })
-          .css({ color: '#000' })
+          .css({ color: '#000', position: 'relative', left: '50px' })
           .bind("EnterFrame", function() {
             if (Crafty.frame() % 2 == 0) {
               if (this.lat && this.lng) {
@@ -58,17 +58,5 @@ function spawnNextWaypoint(data) {
           });
       }
     })
-    // if (i == Game.waypoints.list.length) {
-    //   M.log("All waypoints have been reached!");
-    // } else {
-    //   M.log("Waypoint " + i + " has been spawned!");
-    //   Game.waypoints.current = Crafty.e("2D, DOM, waypoint, waypointSprite").attr({
-    //     index: i,
-    //     lat: Game.waypoints.list[i][0],
-    //     lng: Game.waypoints.list[i][1],
-    //     w: 64,
-    //     h: 64
-    //   });
-    // }
   }
 }

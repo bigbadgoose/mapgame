@@ -141,11 +141,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-<<<<<<< HEAD
-  iron_worker
-=======
   eventbrite-client
->>>>>>> 70ec1b0791ec5391d0bf8b051fbb67022d3b13e2
+  iron_worker
   jquery-rails
   pg
   pry
