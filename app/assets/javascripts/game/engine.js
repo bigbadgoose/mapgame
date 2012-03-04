@@ -18,7 +18,7 @@ $(function() {
         h: 48
       });
       this.bind("EnterFrame", function() {
-        if (Crafty.frame() % 10 == 0) {
+        if (Crafty.frame() % 2 == 0) {
           var data = Game.otherPlayers[this.player_id];
           if (data.lat && data.lng) {
             var xy = Game.helpers.latLngtoXY([data.lat, data.lng]);
@@ -55,8 +55,8 @@ $(function() {
   };
   Game.helpers.latLngtoXY = function(latLng) {
     var mapBounds = map.getBounds();
-    var x = (latLng[1] - mapBounds.center.longitude)/mapBounds.width*960 + 480;
-    var y = (mapBounds.center.latitude - latLng[0])/mapBounds.height*600 + 300;
+    var x = (latLng[1] - mapBounds.center.longitude)/mapBounds.width*960 - 16 + 480;
+    var y = (mapBounds.center.latitude - latLng[0])/mapBounds.height*600 - 24 + 300;
     return [x,y];
   };
   Game.helpers.setMapCenter = function() {
