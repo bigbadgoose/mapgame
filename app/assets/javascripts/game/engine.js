@@ -6,8 +6,6 @@ $(function() {
     Crafty.sprite(32, "/images/sprites/ghost.gif", { ghostSprite: [0,0,1,1.5] });
   });
 
-  // Components
-
   // Helper functions
   Game.helpers.loadScene = function(scene) {
     Crafty.scene(scene);
@@ -30,6 +28,10 @@ $(function() {
       lng: lng
     }
   };
+  Game.helpers.XYtoLatLng = function(xy) {
+    var mapBounds = map.getBounds();
+    return [lat,lng];
+  };
   Game.helpers.latLngtoXY = function(latLng) {
     var mapBounds = map.getBounds();
     var x = (latLng[1] - mapBounds.center.longitude)/mapBounds.width*960 - 16 + 480;
@@ -40,7 +42,31 @@ $(function() {
     map.setView({ center: new Microsoft.Maps.Location(testLat,testLng) });
   };
   Game.helpers.spawnGhost = function() {
-    Crafty.e("2D, DOM, ghostSprite, ghostComponent");
+    var mapBounds = map.getBounds();
+    var latLng = [
+      mapBounds.center.latitude + mapBounds.height/2,
+      mapBounds.center.longitude - mapBounds.width/2
+    ];
+    console.log("Spawning a ghost!");
+    var data = {
+      components: "2D, DOM, ghostSprite, ghostComponent",
+      spawnLocation: latLng,
+      v: [-1,1],
+      bullets: (function() {
+        var b = [];
+        for (var i=0; i<20; ++i) {
+          var x = Math.random()*3;
+          var y = Math.random()*3;
+          b.push([x,y]);
+        }
+        return b;
+      })()
+    };
+    Game.pubsub.trigger("client-spawn-enemy", data);
+    Crafty.e(data.components).attr({
+      lat: latLng[0],
+      lng: latLng[1]
+    });
   };
 
   // Scenes
@@ -137,6 +163,7 @@ $(function() {
           case Crafty.keys.A: this.moving.left = true; this.moving.right = false; break;
           case Crafty.keys.W: this.moving.up = true; this.moving.down = false; break;
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
+          case Crafty.keys.SPACE: break;
 
           case Crafty.keys.P: B.reset(); break;
           case Crafty.keys.G: Game.helpers.spawnGhost(); break;
@@ -148,6 +175,7 @@ $(function() {
           case Crafty.keys.A: this.moving.left = false; break;
           case Crafty.keys.W: this.moving.up = false; break;
           case Crafty.keys.S: this.moving.down = false; break;
+          case Crafty.keys.SPACE: break;
         }
       });
     Game.player = player;

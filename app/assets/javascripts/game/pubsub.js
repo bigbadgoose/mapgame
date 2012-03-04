@@ -19,6 +19,10 @@ function pubsubInit() {
       }
     }
   });
+  channel.bind('client-spawn_enemy', function(data) {
+    Crafty.e(data.components);
+  });
+
   channel.bind('pusher:subscription_succeeded', function(data) {
     // console.log("PUSHER - Subscribed to channel!");
     data.each(function(user) {
@@ -29,8 +33,10 @@ function pubsubInit() {
     });
   });
   channel.bind('pusher_internal:member_added', function(data) {
-    console.log("PUSHER - A member has been added!");
     M.add("User:" + data.user_id + " has joined the game!");
+    console.log("PUSHER - A member has been added!");
+    Game.otherPlayers[data.user_id] = {};
+    Game.helpers.addOtherPlayer(data.user_id);
   });
   channel.bind('pusher_internal:member_removed', function(data) {
     console.log("PUSHER - A member has been removed!");

@@ -5,8 +5,8 @@ Crafty.c("playerComponent", {
     this.attr({
       xspeed: 3,
       yspeed: 3,
-      x: 200,
-      y: 200,
+      x: 30,
+      y: 30,
       w: 32,
       h: 48
     });
@@ -18,26 +18,71 @@ Crafty.c("playerComponent", {
           this.x = xy[0];
           this.y = xy[1];
           this.z = xy[1];
+        } else {
+          this.x = -100;
+          this.y = -100;
         }
       }
     });
   }
 });
 
+// Enemy components
 Crafty.c("ghostComponent", {
   init: function() {
     this.origin("center");
     this.attr({
-      xspeed: 2,
-      yspeed: 2,
-      x: 200,
-      y: 200,
+      latSpeed: -0.00002,
+      lngSpeed: 0.00002,
       w: 32,
-      h: 48
+      h: 48,
+      frame: 0
     });
     this.bind("EnterFrame", function() {
-      this.x += this.xspeed;
-      this.y += this.xspeed;
+      if (this.lat && this.lng) {
+        var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+        this.x = xy[0];
+        this.y = xy[1];
+        this.lat += this.latSpeed;
+        this.lng += this.lngSpeed;
+      }
+      var x = this.x,
+          y = this.y;
+      if (Crafty.frame() % 30 == 0) {
+        Crafty.e("2D, DOM, Color, bullet, enemyBullet").color("red").attr({
+          lat: this.lat,
+          lng: this.lng,
+          w: 6,
+          h: 6,
+          latSpeed: -0.00005,
+          lngSpeed: 0.00005,
+        });
+      }
+      this.frame++;
+      if (this.frame > 120) {
+        this.destroy();
+      }
     });
   }
 });
+
+
+// Misc entities
+Crafty.c("bullet", {
+  init: function() {
+    this.bind("EnterFrame", function() {
+      if (this.lat && this.lng) {
+        var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+        this.x = xy[0];
+        this.y = xy[1];
+        this.lat += this.latSpeed;
+        this.lng += this.lngSpeed;
+      }
+      this.frame++;
+      if (this.frame > 300) {
+        this.destroy();
+      }
+    });
+  }
+});
+
