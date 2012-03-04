@@ -11,9 +11,16 @@ class WaypointsController < ApplicationController
     @@waypoints ||= Hash.new
     unless @@waypoints[key]
       response = EB_CLIENT.event_search({keywords: key, city: 'san francisco'})
-      events = JSON.parse(response.body)["events"]
-      if events
-        @@waypoints[key] = events.slice(1..-1)
+      event_data = JSON.parse(response.body)["events"]
+      if event_data
+        @@waypoints[key] = event_data.slice(1..-1).map do |data|
+          e = data['event']
+          v = e['venue']
+          {title: e['title'],
+           url: e['url'],
+           latitude: v['latitude'],
+           longitude: v['longitude']}
+        end
       end
     end
     return @@waypoints[key]
