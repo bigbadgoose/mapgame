@@ -221,7 +221,7 @@ $(function() {
           case Crafty.keys.A: this.moving.left = true; this.moving.right = false; break;
           case Crafty.keys.W: this.moving.up = true; this.moving.down = false; break;
           case Crafty.keys.S: this.moving.down = true; this.moving.up = false; break;
-          case Crafty.keys.SPACE: break;
+          case Crafty.keys.SPACE: Game.helpers.explodeEverything(); break;
 
           // case Crafty.keys.J: this.firing.left = true; this.firing.right = false; break;
           // case Crafty.keys.L: this.firing.right = true; this.firing.left = false; break;
@@ -233,7 +233,7 @@ $(function() {
           case Crafty.keys.E: FX.adviceAnimal('umadd', 'psycho'); break;
 
           case Crafty.keys.P: B.reset(); break;
-          case Crafty.keys.B: Game.helpers.explodeEverything(); break;
+          //case Crafty.keys.B: Game.helpers.explodeEverything(); break;
           case Crafty.keys.H: Game.helpers.spawnNextWaypoint(); break;
           case Crafty.keys.G: Game.helpers.spawnGhost(); break;
         }
@@ -244,7 +244,7 @@ $(function() {
           case Crafty.keys.A: this.moving.left = false; break;
           case Crafty.keys.W: this.moving.up = false; break;
           case Crafty.keys.S: this.moving.down = false; break;
-          case Crafty.keys.SPACE: break;
+          //case Crafty.keys.SPACE: break;
 
           // case Crafty.keys.J: this.firing.left = false; break;
           // case Crafty.keys.L: this.firing.right = false; break;
