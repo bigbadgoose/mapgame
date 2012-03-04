@@ -23,9 +23,35 @@ var Game = {
 window.Game = Game;
 
 
-// jq init
+// ---------------------------------------------- CONSOLE
+var M = function() {
+  return {
+    stuff: {
+      el: null,
+      css: 'info'
+    },
+    init: function(ele) {
+      var self = this;
+      self.stuff.el = ele;
+    },
+    add: function(val, type) {
+      var self = this,
+          msg = $('<p>').
+            addClass(type).
+            html(val);
+      self.stuff.el.append(msg);
+    },
+    clear: function(val) {
+      M.stuff.el.empty();
+    }
+  }
+}(); // END CONSOLE
+
+
+// ---------------------------------------------- JQ INIT
 $(function() {
   $('#messages').click(function() {
     $('#messages').addClass('on')
   });
+  M.init($('#messages'));
 });
