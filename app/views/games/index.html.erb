@@ -11,45 +11,8 @@
 
 
 <script>
-  // -------------------------------------------- BING MAPS
-  var B = function() {
-    return {
-      init: function() {
-        var self = this,
-            mapOpts = {
-              credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
-              center: new Microsoft.Maps.Location(<%= @loc[0] %>, <%= @loc[1] %>),
-              mapTypeId:Microsoft.Maps.MapTypeId.road,
-              //labelOverlay: Microsoft.Maps.LabelOverlay.hidden,
-              //disableBirdseye: true,
-              showDashboard: false,
-              width: 960,
-              height: 600,
-              zoom: 16
-            },
-            map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
-
-        Microsoft.Maps.loadModule('Microsoft.Maps.VenueMaps', {callback: self.venuemapsModuleLoaded});
-        window.map = map;
-      },
-
-      venuemapsModuleLoaded: function() {
-        var vmaps = new Microsoft.Maps.VenueMaps.VenueMapFactory(map),
-            self = this;
-        vmaps.getNearbyVenues({map: map, location: map.getCenter(), radius:10000, callback:self.DisplayNearbyVenueCount});
-      },
-
-      displayNearbyVenues: function(venues) {
-         var displayResults = "Nearby venues with available venue maps:\n";
-         for (var i=0; i<venues.length; i++) {
-            displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
-         }
-         M.log(displayResults);
-      }
-
-    }
-  }();
-
+  B.center.lat = <%= @loc[0] %>;
+  B.center.long = <%= @loc[1] %>;
   Game.user_id = '<%= session[:user_id] %>';
 
   $(function() {

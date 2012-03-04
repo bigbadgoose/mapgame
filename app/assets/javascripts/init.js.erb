@@ -54,6 +54,59 @@ var M = function() {
 }();
 
 
+// -------------------------------------------- BING MAPS
+var B = function() {
+  return {
+
+    origin: {lat:37.794254, long:-122.419453},
+    center: {lat:37.794254, long:-122.419453},
+
+    init: function() {
+      var self = this,
+          mapOpts = {
+            credentials:"AlC9CGbZ8LHeSgdDZKuTJcKueNw6H-YgNcBLvFL5uzfittgGIKTucztKA8OI37Rc",
+            center: new Microsoft.Maps.Location(this.center.lat, this.center.long),
+            mapTypeId: Microsoft.Maps.MapTypeId.road,
+            //labelOverlay: Microsoft.Maps.LabelOverlay.hidden,
+            //disableBirdseye: true,
+            showDashboard: false,
+            width: 960,
+            height: 600,
+            zoom: 16
+          },
+          map = new Microsoft.Maps.Map(document.getElementById("map_div"), mapOpts);
+
+      Microsoft.Maps.loadModule('Microsoft.Maps.VenueMaps', {callback: self.venuemapsModuleLoaded});
+      window.map = map;
+    },
+
+    reset: function() {
+      map.setView({center: new Microsoft.Maps.Location(this.origin.lat, this.origin.long)});
+      M.log('reset');
+    },
+
+    venuemapsModuleLoaded: function() {
+      var vmaps = new Microsoft.Maps.VenueMaps.VenueMapFactory(map),
+          self = this;
+      vmaps.getNearbyVenues({
+        map: map,
+        location: map.getCenter(),
+        radius:10000,
+        callback: self.DisplayNearbyVenueCount
+      });
+    },
+
+    displayNearbyVenues: function(venues) {
+       var displayResults = "Nearby venues with available venue maps:\n";
+       for (var i=0; i<venues.length; i++) {
+          displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
+       }
+       M.log(displayResults);
+    }
+  }
+}();
+
+
 // ---------------------------------------------- JQ INIT
 $(function() {
   $('#messages').click(function() {
