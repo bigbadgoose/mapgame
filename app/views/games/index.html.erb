@@ -14,13 +14,14 @@
     });
     window.map = map;
   }
-
   $(function() {
     getMap();
   })
 </script>
 
 <script type="text/javascript">
+  Game.user_id = '<%= session[:user_id] %>';
+
   $(function() {
     setTimeout(function() {
       Game.helpers.loadScene("game");

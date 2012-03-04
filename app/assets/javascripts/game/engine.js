@@ -33,6 +33,7 @@ $(function() {
         if (Crafty.frame() % 160 == 0) {
           window.shit = Game.pubsub;
           Game.pubsub.trigger("client-player_move", {
+            user_id: Game.user_id,
             x: this.x,
             y: this.y
           });
