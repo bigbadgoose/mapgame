@@ -16,7 +16,7 @@ $(function() {
     Crafty.scene(scene);
   };
   Game.helpers.addOtherPlayer = function(player_id) {
-    Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr({
+    return Crafty.e("2D, DOM, playerComponent, otherPlayerComponent, playerSprite").attr({
       player_id: player_id
     });
   };
@@ -80,6 +80,7 @@ $(function() {
         yspeed: 3,
         x: 480-16,
         y: 300-24,
+        z: 300-24,
         moving: {
           left: false,
           right: false,

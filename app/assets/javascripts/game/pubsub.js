@@ -12,10 +12,17 @@ function pubsubInit() {
   channel.bind('client-player_move', function(data) {
     if (data.user_id !== Game.user_id) {
       if (data.lat && data.lng) {
-        Game.otherPlayers[data.user_id] = {
-          lat: data.lat,
-          lng: data.lng
-        };
+        var otherPlayer = Game.otherPlayers[data.user_id];
+        if (otherPlayer) {
+          Game.otherPlayers[data.user_id].lat = data.lat;
+          Game.otherPlayers[data.user_id].lng = data.lng;
+        } else {
+          Game.otherPlayers[data.user_id] = {
+            entity: Game.helpers.addOtherPlayer(data.user_id),
+            lat: data.lat,
+            lng: data.lng
+          };
+        }
       }
     }
   });
@@ -27,8 +34,9 @@ function pubsubInit() {
     // console.log("PUSHER - Subscribed to channel!");
     data.each(function(user) {
       if (user.id != Game.user_id && !Game.otherPlayers[user.id]) {
-        Game.otherPlayers[user.id] = {};
-        Game.helpers.addOtherPlayer(user.id);
+        Game.otherPlayers[user.id] = {
+          entity: Game.helpers.addOtherPlayer(user.id)
+        }
       }
     });
   });

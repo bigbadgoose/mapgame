@@ -7,6 +7,7 @@ Crafty.c("playerComponent", {
       yspeed: 3,
       x: 30,
       y: 30,
+      z: 30,
     });
     this.addComponent("Collision")
       .collision()
@@ -36,6 +37,7 @@ Crafty.c("otherPlayerComponent", {
         } else {
           this.x = -100;
           this.y = -100;
+          this.z = -100;
         }
       }
     });

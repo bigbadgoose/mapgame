@@ -7,6 +7,7 @@ const HEIGHT = 600;
 // Globals
 var Game = {
   user_id: false,
+  waypoint: false,
   player: false,
   otherPlayers: {},
   entities: {
