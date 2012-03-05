@@ -134,6 +134,8 @@ $(function() {
         // Send location updates to server for persistence and other clients
         if (frame % 8 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
+
+          /*
           if (frame % 60 == 0) {
             $.ajax({
               url: "/positions",
@@ -144,6 +146,8 @@ $(function() {
               }
             });
           }
+          */
+
           Game.pubsub.trigger("client-player_move", {
             user_id: Game.user_id,
             lat: latLng.lat,
