@@ -126,7 +126,7 @@ Crafty.c("ghostComponent", {
 // Explosions
 Crafty.c("enemyDestroyingExplosion", {
   init: function() {
-    S.play("zap02");
+    S.play("explosion");
     FX.adviceAnimal('pwned', 'psycho');
     this.attr({
       x: 0,

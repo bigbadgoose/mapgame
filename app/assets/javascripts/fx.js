@@ -24,7 +24,7 @@
 
         // append
         map$.append(animal$);
-        window.setTimeout(function() {
+        setTimeout(function() {
           map$.addClass(advice);
         }, 200);
 
