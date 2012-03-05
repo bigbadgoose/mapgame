@@ -13,6 +13,7 @@ var Game = {
   waypoint: false,
   waypointIndicator: false,
   waypointText: false,
+  waypointCounts: 0,
   player: false,
   otherPlayers: {},
   messageCounters: {},

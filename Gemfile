@@ -8,7 +8,7 @@ gem 'rails', '3.2.2'
 gem 'pg'
 gem 'thin'
 gem 'pusher'
-gem 'iron_worker'
+# gem 'iron_worker'
 gem 'typhoeus'
 gem 'eventbrite-client'
 

@@ -17,6 +17,8 @@ Crafty.c("playerComponent", {
       })
       .onHit("waypoint", function(e) {
         S.play("zap01");
+        Game.waypointCounts++;
+        $("#count").text(Game.waypointCounts);
         var i = ~~(Math.random()*4);
         if (i == 0) {
           FX.adviceAnimal('wolf-0', 'calm');
