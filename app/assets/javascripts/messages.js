@@ -13,7 +13,7 @@ var M = function() {
       });
     },
     log: function(val, type) {
-      this.append(val, type);
+      //this.append(val, type);
     },
     add: function(val, type) {
       this.append(val, type);

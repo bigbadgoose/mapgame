@@ -46,7 +46,7 @@ function pubsubInit() {
   });
 
   channel.bind('pusher_internal:member_added', function(data) {
-    M.add("PUSHER - User:" + data.user_id + " has joined the game!");
+    M.add("Player n00b " + data.user_id.substring(0,5) + " has entered the arena");
     var player = Game.otherPlayers[data.user_id];
     if (player) {
       player.destroy();
@@ -55,7 +55,7 @@ function pubsubInit() {
     Game.otherPlayers[data.user_id] = Game.helpers.addOtherPlayer(data);
   });
   channel.bind('pusher_internal:member_removed', function(data) {
-    M.add("PUSHER - User:" + data.user_id + " has left the game!");
+    M.add("Player " + data.user_id.substring(0,5) + " could not hang and peaced out of the game");
     var player = Game.otherPlayers[data.user_id];
     if (player) {
       player.destroy();

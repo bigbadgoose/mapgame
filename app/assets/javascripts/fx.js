@@ -31,7 +31,7 @@
         // add close message
 
         // dismiss
-        var dismissTime = (advice == "umadd") ? 5000 : 2000;
+        var dismissTime = (advice == "umadd") ? 5000 : 1500;
         setTimeout(function() {
           clearInterval(interval);
           map$.removeClass();
