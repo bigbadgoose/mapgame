@@ -131,7 +131,7 @@ $(function() {
         var frame = Crafty.frame();
 
         // Send location updates to server for persistence and other clients
-        if (frame % 4 == 0) {
+        if (frame % 8 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
           if (frame % 60 == 0) {
             $.ajax({
