@@ -13,7 +13,7 @@ Crafty.c("playerComponent", {
     this.addComponent("Collision")
       .collision()
       .onHit("powerup", function() {
-        console.log("Got a powerup!");
+        // console.log("Got a powerup!");
       })
       .onHit("waypoint", function(e) {
         S.play("zap01");
@@ -27,7 +27,7 @@ Crafty.c("playerComponent", {
         } else if (i == 3) {
           FX.adviceAnimal('biteoff', 'calm');
         }
-        console.log("Waypoint reached!");
+        // console.log("Waypoint reached!");
         Game.waypoints.index++;
         var data = {
           index: Game.waypoints.index
@@ -40,7 +40,7 @@ Crafty.c("playerComponent", {
         if(Game.player.hp >= 0) {
           $('#score').html(Game.player.hp + "%");
         }
-        console.log("OUCH", Game.player.hp);
+        // console.log("OUCH", Game.player.hp);
         e[0].obj.destroy();
       });
   }

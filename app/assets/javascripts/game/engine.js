@@ -14,11 +14,11 @@ $(function() {
   };
   Game.helpers.allPlayerLocations = function() {
     var keys = _.keys(Game.otherPlayers);
-    console.log(keys);
+    // console.log(keys);
     _.each(keys, function(k) {
-      console.log(k);
+      // console.log(k);
       var player = Game.otherPlayers[k];
-      console.log("Player:" + k + " - x:" + player.x + ", y:" + player.y);
+      // console.log("Player:" + k + " - x:" + player.x + ", y:" + player.y);
     });
   };
   Game.helpers.getPlayerLatLng = function() {

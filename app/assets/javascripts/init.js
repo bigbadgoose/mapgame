@@ -3,7 +3,7 @@ const WIDTH = 960;
 const HEIGHT = 600;
 
 // Fix spacebar shit
-window.onkeydown = function(e) { 
+window.onkeydown = function(e) {
   return !(e.keyCode == 32);
 };
 
@@ -39,6 +39,10 @@ $(function() {
   setTimeout(function() {
     Game.helpers.loadScene("game");
   }, 1000);
+
+  if (!navigator.userAgent.match(/Chrome/)) {
+    alert('game works best on chrome ... so please use that!');
+  }
 
   // S.play('zap01');
   // S.play('zap02');
