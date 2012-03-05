@@ -19,6 +19,7 @@ function spawnNextWaypoint(data) {
   if (Game.waypoints.current) {
     if (Game.waypoints.current.index !== i) {
       Game.waypoints.current.destroy();
+      Game.waypoints.currentLabel.destroy();
       createWaypoint = true;
     }
   } else {
@@ -38,7 +39,7 @@ function spawnNextWaypoint(data) {
           h: 64
         });
 
-        Crafty.e("2D, DOM, Text")
+        Game.waypoints.currentLabel = Crafty.e("2D, DOM, Text")
           .text(title)
           .attr({
             lat: lat,

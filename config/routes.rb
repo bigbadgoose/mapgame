@@ -30,6 +30,8 @@ Mapgame::Application.routes.draw do
   match '/pusher/auth' => 'pusher#auth'
   match '/waypoint/:id' => 'waypoints#next'
 
+  root :to => 'pages#index'
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
