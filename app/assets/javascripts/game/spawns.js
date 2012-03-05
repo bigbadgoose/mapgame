@@ -19,6 +19,9 @@ function spawnNextWaypoint(data) {
   if (Game.waypoints.current) {
     if (Game.waypoints.current.index !== i) {
       Game.waypoints.current.destroy();
+      if (Game.waypointText) {
+        Game.waypointText.destroy();
+      }
       createWaypoint = true;
     }
   } else {
@@ -38,7 +41,7 @@ function spawnNextWaypoint(data) {
           h: 64
         });
 
-        Crafty.e("2D, DOM, Text")
+        Game.waypointText = Crafty.e("2D, DOM, Text")
           .text(title)
           .attr({
             lat: lat,
@@ -46,7 +49,16 @@ function spawnNextWaypoint(data) {
             w: 100,
             h: 25
           })
-          .css({ color: '#000', position: 'relative', left: '50px' })
+          .css({
+            color: '#000',
+            position: 'relative',
+            left: '50px',
+            background: "white",
+            border: "1px solid black",
+            padding: "3px",
+            "min-width": "250px",
+            "min-height": "70px"
+          })
           .bind("EnterFrame", function() {
             if (Crafty.frame() % 2 == 0) {
               if (this.lat && this.lng) {

@@ -12,6 +12,7 @@ var Game = {
   user_id: false,
   waypoint: false,
   waypointIndicator: false,
+  waypointText: false,
   player: false,
   otherPlayers: {},
   messageCounters: {},
