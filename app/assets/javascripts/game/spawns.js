@@ -10,6 +10,7 @@ function spawnGhost(data) {
 }
 
 function generateWaypoint(title, lat, lng) {
+  title = title || '';
   Game.waypoints.current = Crafty.e("2D, DOM, waypoint, waypointSprite").attr({
     lat: lat,
     lng: lng,
@@ -58,6 +59,7 @@ function spawnNextWaypoint(fetchWaypoint, cb) {
     window.waypointIndex = window.waypointIndex + 1;
     $.getJSON('/waypoint/'+window.waypointIndex, function(data) {
       if (data) {
+        window.currentWaypoint = data;
         var lat = data['latitude'];
         var lng = data['longitude'];
         var title = data['title'];
@@ -68,6 +70,7 @@ function spawnNextWaypoint(fetchWaypoint, cb) {
   } else {
     if (typeof(cb) == 'object') {
       var data = cb;
+      window.currentWaypoint = data;
       var lat = data['latitude'];
       var lng = data['longitude'];
       var title = data['title'];
