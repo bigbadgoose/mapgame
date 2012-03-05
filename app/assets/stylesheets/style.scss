@@ -21,6 +21,13 @@ body {
   color: #fff;
   padding: 5px;
   display: inline-block;
+  position: relative;
+  left: 110px;
+  background: white;
+  border: 1px solid black;
+  padding: 3px;
+  min-width: 250px;
+  min-height: 70px;
 }
 
 #header {
