@@ -27,7 +27,7 @@ Crafty.c("playerComponent", {
         Game.pubsub.trigger("client-waypoint_reached", data);
       })
       .onHit("enemyBullet", function(e) {
-        Game.player.hp -= 2;
+        //Game.player.hp -= 2;
         if(Game.player.hp >= 0) {
           $('#score').html(Game.player.hp + "%");
         }
