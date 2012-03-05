@@ -9,67 +9,73 @@ function spawnGhost(data) {
   });
 }
 
-function spawnNextWaypoint(data) {
-  var createWaypoint = false;
-  if (data && data.index) {
-    var i = data.index;
-  } else {
-    var i = Game.waypoints.index;
-  }
-  if (Game.waypoints.current) {
-    if (Game.waypoints.current.index !== i) {
-      Game.waypoints.current.destroy();
-      if (Game.waypointText) {
-        Game.waypointText.destroy();
+function generateWaypoint(title, lat, lng) {
+  title = title || '';
+  Game.waypoints.current = Crafty.e("2D, DOM, waypoint, waypointSprite").attr({
+    lat: lat,
+    lng: lng,
+    w: 64,
+    h: 64
+  });
+
+  Game.waypointText = Crafty.e("2D, DOM, Text")
+    .text(title)
+    .attr({
+      lat: lat,
+      lng: lng,
+      w: 100,
+      h: 25
+    })
+    .css({
+      color: '#000',
+      position: 'relative',
+      left: '50px',
+      background: "white",
+      border: "1px solid black",
+      padding: "3px",
+      "min-width": "250px",
+      "min-height": "70px"
+    })
+    .bind("EnterFrame", function() {
+      if (Crafty.frame() % 2 == 0) {
+        if (this.lat && this.lng) {
+          var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
+          this.x = xy[0];
+          this.y = xy[1];
+        }
       }
-      createWaypoint = true;
+    });
+}
+
+function spawnNextWaypoint(fetchWaypoint, cb) {
+  window.waypointIndex = window.waypointIndex || 0;
+  if (Game.waypoints.current) {
+    Game.waypoints.current.destroy();
+    if (Game.waypointText) {
+      Game.waypointText.destroy();
     }
-  } else {
-    createWaypoint = true;
   }
-  if (createWaypoint) {
-    $.getJSON('/waypoint/'+i, function(data) {
+  if (fetchWaypoint) {
+    window.waypointIndex = window.waypointIndex + 1;
+    $.getJSON('/waypoint/'+window.waypointIndex, function(data) {
       if (data) {
+        window.currentWaypoint = data;
         var lat = data['latitude'];
         var lng = data['longitude'];
-        var title = data['title'];  // make use of this?
-        Game.waypoints.current = Crafty.e("2D, DOM, waypoint, waypointSprite").attr({
-          index: i,
-          lat: lat,
-          lng: lng,
-          w: 64,
-          h: 64
-        });
-
-        Game.waypointText = Crafty.e("2D, DOM, Text")
-          .text(title)
-          .attr({
-            lat: lat,
-            lng: lng,
-            w: 100,
-            h: 25
-          })
-          .css({
-            color: '#000',
-            position: 'relative',
-            left: '50px',
-            background: "white",
-            border: "1px solid black",
-            padding: "3px",
-            "min-width": "250px",
-            "min-height": "70px"
-          })
-          .bind("EnterFrame", function() {
-            if (Crafty.frame() % 2 == 0) {
-              if (this.lat && this.lng) {
-                var xy = Game.helpers.latLngtoXY([this.lat, this.lng]);
-                this.x = xy[0];
-                this.y = xy[1];
-              }
-            }
-          });
+        var title = data['title'];
+        generateWaypoint(title, lat, lng);
+        cb && cb(data);
       }
     })
+  } else {
+    if (typeof(cb) == 'object') {
+      var data = cb;
+      window.currentWaypoint = data;
+      var lat = data['latitude'];
+      var lng = data['longitude'];
+      var title = data['title'];
+      generateWaypoint(title, lat, lng);
+    }
   }
 }
 

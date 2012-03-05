@@ -32,8 +32,9 @@ Crafty.c("playerComponent", {
         var data = {
           index: Game.waypoints.index
         };
-        spawnNextWaypoint(data);
-        Game.pubsub.trigger("client-waypoint_reached", data);
+        spawnNextWaypoint(true, function (data) {
+          Game.pubsub.trigger("client-waypoint_reached", data);
+        });
       })
       .onHit("enemyBullet", function(e) {
         //Game.player.hp -= 2;

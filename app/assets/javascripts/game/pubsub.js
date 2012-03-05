@@ -26,7 +26,7 @@ function pubsubInit() {
     spawnGhost(data);
   });
   channel.bind('client-waypoint_reached', function(data) {
-    spawnNextWaypoint(data.index);
+    spawnNextWaypoint(false, data);
   });
   channel.bind('client-explode_everything', function(data) {
     spawnExplodeEverything();
