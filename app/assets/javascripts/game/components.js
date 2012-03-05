@@ -39,12 +39,19 @@ Crafty.c("playerComponent", {
         });
       })
       .onHit("enemyBullet", function(e) {
-        //Game.player.hp -= 2;
-        if(Game.player.hp >= 0) {
-          $('#score').html(Game.player.hp + "%");
-        }
-        // console.log("OUCH", Game.player.hp);
         e[0].obj.destroy();
+        if (this.is_you) {
+          this.hp -= 2;
+          if (this.hp <= 0) {
+            $('#score').html('DEAD');
+            FX.adviceAnimal('umadd', 'psycho');
+            S.play("fail");
+            this.destroy();
+          } else {
+            S.play("zap06");
+            $('#score').html(Game.player.hp + "%");
+          }
+        }
       });
   }
 });

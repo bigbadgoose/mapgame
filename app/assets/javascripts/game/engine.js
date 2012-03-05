@@ -115,6 +115,7 @@ $(function() {
         x: 480-16,
         y: 300-24,
         z: 300-24,
+        is_you: true,
         moving: {
           left: false,
           right: false,
@@ -261,17 +262,6 @@ $(function() {
           // case Crafty.keys.K: this.firing.down = false; break;
         }
       })
-      .onHit("enemyBullet", function(e) {
-        this.hp -= 10;
-        if (this.hp <= 0) {
-          $('#score').html('DEAD');
-          FX.adviceAnimal('umadd', 'psycho');
-          S.play("fail");
-          this.destroy();
-        } else {
-          S.play("zap06");
-        }
-      });
     Game.player = player;
     Game.helpers.spawnNextWaypoint();
 
