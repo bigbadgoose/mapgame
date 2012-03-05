@@ -70,8 +70,8 @@ $(function() {
     spawnNextWaypoint();
   };
   Game.helpers.explodeEverything = function() {
-    console.log("Exploding EVERYTHING!!!");
-    Crafty.e("2D, DOM, enemyDestroyingExplosion");
+    Game.pubsub.trigger("client-explode_everything", {});
+    spawnExplodeEverything();
   };
   Game.helpers.getPlayerSprite = function(str) {
     switch (str.charCodeAt(0) % 4) {
@@ -253,8 +253,9 @@ $(function() {
         }
       })
       .onHit("enemyBullet", function(e) {
-        this.hp -= 25;
+        this.hp -= 2;
         if (this.hp <= 0) {
+          $('#score').html('DEAD');
           FX.adviceAnimal('umadd', 'psycho');
           S.play("fail");
           this.destroy();

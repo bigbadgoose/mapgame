@@ -27,7 +27,11 @@ Crafty.c("playerComponent", {
         Game.pubsub.trigger("client-waypoint_reached", data);
       })
       .onHit("enemyBullet", function(e) {
-        console.log("OUCH");
+        //Game.player.hp -= 2;
+        if(Game.player.hp >= 0) {
+          $('#score').html(Game.player.hp + "%");
+        }
+        console.log("OUCH", Game.player.hp);
         e[0].obj.destroy();
       });
   }
@@ -122,7 +126,7 @@ Crafty.c("ghostComponent", {
 // Explosions
 Crafty.c("enemyDestroyingExplosion", {
   init: function() {
-    S.play("zap02");
+    S.play("explosion");
     FX.adviceAnimal('pwned', 'psycho');
     this.attr({
       x: 0,
@@ -134,6 +138,61 @@ Crafty.c("enemyDestroyingExplosion", {
     this.bind("EnterFrame", function() {
       this.frame++;
       if (this.frame > 5) {
+        this.destroy();
+      }
+    });
+  }
+});
+
+
+// Explosion sprites hack
+Crafty.c("preExplosion0", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x - 30;
+      this.y = Game.player.y;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion1", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x;
+      this.y = Game.player.y - 30;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion2", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x;
+      this.y = Game.player.y + 30;
+      this.frame++;
+      if (this.frame > 60) {
+        this.destroy();
+      }
+    });
+  }
+});
+Crafty.c("preExplosion3", {
+  init: function() {
+    this.attr({ frame: 0 });
+    this.bind("EnterFrame", function() {
+      this.x = Game.player.x + 30;
+      this.y = Game.player.y;
+      this.frame++;
+      if (this.frame > 60) {
         this.destroy();
       }
     });

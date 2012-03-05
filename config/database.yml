@@ -7,9 +7,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: mapgame_dev
+  database: mapgame_test
+  username: mapgame
+  password:
   host: localhost
-  pool: 5
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

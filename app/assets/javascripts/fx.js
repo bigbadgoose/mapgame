@@ -24,7 +24,7 @@
 
         // append
         map$.append(animal$);
-        window.setTimeout(function() {
+        setTimeout(function() {
           map$.addClass(advice);
         }, 200);
 
@@ -35,9 +35,12 @@
         setTimeout(function() {
           clearInterval(interval);
           map$.removeClass();
+animal$.remove();
+/*
           animal$.fadeOut(500, function() {
             animal$.remove();
           });
+*/
           screenBusy = false;
         }, dismissTime);
       }
