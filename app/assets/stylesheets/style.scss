@@ -185,6 +185,7 @@ body {
 }
 
 #messages {
+  display: none;
   @include radius;
   @include transition;
   overflow-y: scroll;
