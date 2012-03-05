@@ -30,7 +30,7 @@ const SPRITES = [
 
 Crafty.load(SPRITES, function() {
   Crafty.sprite(64, "/images/sprites/saucer.gif", { playerSaucerSprite: [0,0,1,1.5] });
-  Crafty.sprite(64, "/images/sprites/player.gif", { playerLakituSprite: [0,0,1,1.5] });
+  Crafty.sprite(64, "/images/sprites/lakitu.gif", { playerLakituSprite: [0,0,1,1.5] });
   Crafty.sprite(64, "/images/sprites/tala.gif", { playerMushboomSprite: [0,0,1,1.5] });
   Crafty.sprite(64, "/images/sprites/librarian.gif", { playerKirbySprite: [0,0,1,1.5] });
 

@@ -138,6 +138,27 @@ body {
       @include transform(rotate(360deg) scale(1));
     }
   }
+  &.wolf-0 {
+    .sprite.animal {
+      background: url('/images/wolf_0.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.wolf-1 {
+    .sprite.animal {
+      background: url('/images/wolf_1.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.wolf-2 {
+    .sprite.animal {
+      background: url('/images/wolf_2.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
   &.pwned {
     .sprite.animal {
       background: url('/images/advice_pwned.jpg') 0 0 no-repeat;
