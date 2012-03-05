@@ -1,5 +1,5 @@
 function spawnGhost(data) {
-  console.log("Ghost spawn!!!");
+  // console.log("Ghost spawn!!!");
   Crafty.e(data.components).attr({
     lat: data.latLng[0],
     lng: data.latLng[1],
@@ -74,7 +74,7 @@ function spawnNextWaypoint(data) {
 }
 
 function spawnExplodeEverything() {
-  console.log("Exploding EVERYTHING!!!");
+  // console.log("Exploding EVERYTHING!!!");
 
   var latLng = Game.helpers.getPlayerLatLng();
   Crafty.e("2D, DOM, preExplosion0, bombSprite").attr({ x: Game.player.x, y: Game.player.y });

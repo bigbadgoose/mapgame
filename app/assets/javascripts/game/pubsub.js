@@ -17,7 +17,7 @@ function pubsubInit() {
         Game.otherPlayers[data.user_id].lat = data.lat;
         Game.otherPlayers[data.user_id].lng = data.lng;
       } else {
-        console.log("Creating non-existent: " + data.user_id);
+        // console.log("Creating non-existent: " + data.user_id);
         Game.otherPlayers[data.user_id] = Game.helpers.addOtherPlayer(data);
       }
     }
@@ -34,11 +34,11 @@ function pubsubInit() {
 
   channel.bind("server_game_event", function(data) {
     if (data.type == 'spawn') {
-      console.log("Spawn command received!");
+      // console.log("Spawn command received!");
       Game.helpers.spawnGhost();
     } else {
-      console.log("Event received!!!");
-      console.dir(data);
+      // console.log("Event received!!!");
+      // console.dir(data);
     }
   });
 
