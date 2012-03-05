@@ -35,7 +35,7 @@
         setTimeout(function() {
           clearInterval(interval);
           map$.removeClass();
-animal$.remove();
+          animal$.remove();
 /*
           animal$.fadeOut(500, function() {
             animal$.remove();
