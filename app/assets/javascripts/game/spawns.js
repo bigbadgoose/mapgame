@@ -68,7 +68,6 @@ function spawnNextWaypoint(fetchWaypoint, cb) {
   } else {
     if (typeof(cb) == 'object') {
       var data = cb;
-      console.log('waypoint', cb);
       var lat = data['latitude'];
       var lng = data['longitude'];
       var title = data['title'];
