@@ -87,6 +87,10 @@ $(function() {
   Crafty.scene("game", function() {
     // Begin - game scene
 
+    setInterval(function() {
+      Game.helpers.spawnGhost();
+    }, 2000);
+
     setTimeout(function() {
       var keys = _.keys(Game.otherPlayers);
       _.each(keys, function(k) {
@@ -264,6 +268,7 @@ $(function() {
         }
       });
     Game.player = player;
+    Game.helpers.spawnNextWaypoint();
 
     // End - game scene
   });

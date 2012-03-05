@@ -47,6 +47,8 @@ var B = function() {
     },
 
     venuemapsModuleLoaded: function() {
+      return false;
+
       var vmaps = new Microsoft.Maps.VenueMaps.VenueMapFactory(map),
           self = this;
       vmaps.getNearbyVenues({

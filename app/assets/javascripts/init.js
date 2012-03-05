@@ -12,6 +12,7 @@ var Game = {
   user_id: false,
   waypoint: false,
   waypointIndicator: false,
+  waypointText: false,
   player: false,
   otherPlayers: {},
   messageCounters: {},
@@ -42,7 +43,7 @@ $(function() {
   // S.play('zap01');
   // S.play('zap02');
   S.play('prepare');
-  //S.play('kickstart', .2);
+  S.play('kickstart', .2);
 
   //FX.adviceAnimal('biteoff');
 
