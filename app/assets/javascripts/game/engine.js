@@ -268,6 +268,7 @@ $(function() {
         }
       });
     Game.player = player;
+    Game.helpers.spawnNextWaypoint();
 
     // End - game scene
   });
