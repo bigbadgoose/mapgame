@@ -11,7 +11,7 @@ class GameEventWorker < IronWorker::Base
       Pusher['presence-mapgame_global'].trigger!('server_game_event', {
         :type => 'spawn',
       })
-      sleep 1
+      sleep 5
     end
   end
 end
