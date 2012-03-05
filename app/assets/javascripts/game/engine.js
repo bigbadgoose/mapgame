@@ -131,7 +131,7 @@ $(function() {
         var frame = Crafty.frame();
 
         // Send location updates to server for persistence and other clients
-        if (frame % 10 == 0) {
+        if (frame % 4 == 0) {
           var latLng = Game.helpers.getPlayerLatLng();
           if (frame % 60 == 0) {
             $.ajax({
@@ -257,7 +257,7 @@ $(function() {
         }
       })
       .onHit("enemyBullet", function(e) {
-        this.hp -= 2;
+        this.hp -= 10;
         if (this.hp <= 0) {
           $('#score').html('DEAD');
           FX.adviceAnimal('umadd', 'psycho');
