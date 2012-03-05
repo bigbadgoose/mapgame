@@ -1,3 +1,4 @@
+=begin
 class GameEventWorker < IronWorker::Base
 
   merge_gem 'pusher'
@@ -15,3 +16,4 @@ class GameEventWorker < IronWorker::Base
     end
   end
 end
+=end

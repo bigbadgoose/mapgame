@@ -14,8 +14,8 @@ function generateWaypoint(title, lat, lng) {
   Game.waypoints.current = Crafty.e("2D, DOM, waypoint, waypointSprite").attr({
     lat: lat,
     lng: lng,
-    w: 64,
-    h: 64
+    w: 90,
+    h: 90
   });
 
   Game.waypointText = Crafty.e("2D, DOM, Text")
@@ -26,15 +26,18 @@ function generateWaypoint(title, lat, lng) {
       w: 100,
       h: 25
     })
+    //.addClass('infobox')
     .css({
       color: '#000',
       position: 'relative',
-      left: '50px',
-      background: "white",
-      border: "1px solid black",
-      padding: "3px",
+      'border-radius': '3px',
+      padding: '5px',
+      left: '100px',
+      top: '10px',
+      background: "rgba(255,255,225,.8)",
+      border: "2px solid white",
       "min-width": "250px",
-      "min-height": "70px"
+      "min-height": "50px"
     })
     .bind("EnterFrame", function() {
       if (Crafty.frame() % 2 == 0) {
