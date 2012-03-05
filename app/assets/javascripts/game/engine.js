@@ -66,8 +66,9 @@ $(function() {
     spawnGhost(data);
   };
   Game.helpers.spawnNextWaypoint = function() {
-    Game.pubsub.trigger("client-waypoint_reached", {});
-    spawnNextWaypoint();
+    spawnNextWaypoint(true, function(data) {
+      Game.pubsub.trigger("client-waypoint_reached", data);
+    });
   };
   Game.helpers.explodeEverything = function() {
     Game.pubsub.trigger("client-explode_everything", {});
