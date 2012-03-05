@@ -17,7 +17,16 @@ Crafty.c("playerComponent", {
       })
       .onHit("waypoint", function(e) {
         S.play("zap01");
-        FX.adviceAnimal('biteoff', 'psycho');
+        var i = ~~(Math.random()*4);
+        if (i == 0) {
+          FX.adviceAnimal('wolf-0', 'calm');
+        } else if (i == 1) {
+          FX.adviceAnimal('wolf-1', 'calm');
+        } else if (i == 2) {
+          FX.adviceAnimal('wolf-2', 'calm');
+        } else if (i == 3) {
+          FX.adviceAnimal('biteoff', 'calm');
+        }
         console.log("Waypoint reached!");
         Game.waypoints.index++;
         var data = {
