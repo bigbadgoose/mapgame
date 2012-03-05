@@ -17,26 +17,28 @@ Crafty.c("playerComponent", {
       })
       .onHit("waypoint", function(e) {
         S.play("zap01");
-        Game.waypointCounts++;
-        $("#count").text(Game.waypointCounts);
-        var i = ~~(Math.random()*4);
-        if (i == 0) {
-          FX.adviceAnimal('wolf-0', 'calm');
-        } else if (i == 1) {
-          FX.adviceAnimal('wolf-1', 'calm');
-        } else if (i == 2) {
-          FX.adviceAnimal('wolf-2', 'calm');
-        } else if (i == 3) {
-          FX.adviceAnimal('biteoff', 'calm');
+        if (this.is_you) {
+          Game.waypointCounts++;
+          $("#count").text(Game.waypointCounts);
+          var i = ~~(Math.random()*4);
+          if (i == 0) {
+            FX.adviceAnimal('wolf-0', 'calm');
+          } else if (i == 1) {
+            FX.adviceAnimal('wolf-1', 'calm');
+          } else if (i == 2) {
+            FX.adviceAnimal('wolf-2', 'calm');
+          } else if (i == 3) {
+            FX.adviceAnimal('biteoff', 'calm');
+          }
+          // console.log("Waypoint reached!");
+          Game.waypoints.index++;
+          var data = {
+            index: Game.waypoints.index
+          };
+          spawnNextWaypoint(true, function (data) {
+            Game.pubsub.trigger("client-waypoint_reached", data);
+          });
         }
-        // console.log("Waypoint reached!");
-        Game.waypoints.index++;
-        var data = {
-          index: Game.waypoints.index
-        };
-        spawnNextWaypoint(true, function (data) {
-          Game.pubsub.trigger("client-waypoint_reached", data);
-        });
       })
       .onHit("enemyBullet", function(e) {
         e[0].obj.destroy();
