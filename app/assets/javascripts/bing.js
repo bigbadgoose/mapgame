@@ -43,7 +43,7 @@ var B = function() {
 
     reset: function() {
       map.setView({center: new Microsoft.Maps.Location(origin.lat, origin.long)});
-      M.log('reset');
+      // M.log('reset');
     },
 
     venuemapsModuleLoaded: function() {
@@ -66,7 +66,7 @@ var B = function() {
         displayResults = displayResults + venues[i].metadata.Name + "\t" + venues[i].distance/1000 + " km\n";
         console.log('VENUE: ', venues[i]);
       }
-      M.log('venues: ' + displayResults);
+      // M.log('venues: ' + displayResults);
     }
   }
 }();
